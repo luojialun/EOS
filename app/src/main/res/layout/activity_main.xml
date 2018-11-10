@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tl="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical"
+    tools:context="com.android.eos.MainActivity">
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/vp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/bottom_tablayout"
+        android:overScrollMode="never" />
+
+    <com.flyco.tablayout.CommonTabLayout
+        android:id="@+id/bottom_tablayout"
+        android:layout_width="match_parent"
+        android:layout_height="49dp"
+        android:layout_alignParentBottom="true"
+        tl:tl_iconGravity="TOP"
+        tl:tl_iconHeight="22dp"
+        tl:tl_iconMargin="2dp"
+        tl:tl_iconVisible="true"
+        tl:tl_iconWidth="22dp"
+        tl:tl_indicator_color="#3abd9e"
+        tl:tl_indicator_gravity="BOTTOM"
+        tl:tl_indicator_height="0dp"
+        tl:tl_indicator_width="0dp"
+        tl:tl_textSelectColor="@color/blue"
+        tl:tl_textUnselectColor="#C4C5DE"
+        tl:tl_textsize="10sp"
+        tl:tl_underline_height="0dp" />
+
+</RelativeLayout>

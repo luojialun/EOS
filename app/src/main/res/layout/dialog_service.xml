@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/roor_fl"
+    android:layout_gravity="center"
+    android:gravity="center">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="-58dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="58dp"
+            android:background="@drawable/rectangle_radius10_white"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="61dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="15dp"
+                    android:layout_height="7dp"
+                    android:src="@mipmap/dialog_service_2" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="9dp"
+                    android:text="@string/dialog_service_1"
+                    android:textColor="#ff00094a"
+                    android:textSize="14sp" />
+
+                <ImageView
+                    android:layout_width="15dp"
+                    android:layout_height="7dp"
+                    android:src="@mipmap/dialog_service_3" />
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="12dp"
+                android:text="@string/dialog_service_2"
+                android:textColor="#ff334186" />
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="186dp"
+                android:layout_marginTop="12dp"
+                android:overScrollMode="never">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginHorizontal="10dp"
+                    android:background="#fff8f8f9"
+                    android:padding="12dp"
+                    android:text="       Mr. Johnson had never been up in anaerophane before and he had read a lot about air accidents, so one day when a friend offered to take him for a ride in his own small phane, Mr. Johnson was veryworried about accepting. Finally, however, his frienpersuaded him that it was very safe, and Mr. Johnson boarded the plane.
+Finally, however, his frienpersuaded him that it was very safe, and Mr. Johnson boarded the plane.
+" />
+            </ScrollView>
+
+            <LinearLayout
+                android:id="@+id/agree_ll"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="23dp"
+                android:layout_marginTop="24dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/agree_iv"
+                    android:layout_width="19dp"
+                    android:layout_height="19dp"
+                    android:src="@drawable/dialog_service_agree" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="6dp"
+                    android:text="@string/dialog_service_4"
+                    android:textSize="9sp" />
+            </LinearLayout>
+
+            <FrameLayout
+                android:id="@+id/next_fl"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginTop="24dp"
+                android:background="@drawable/rectangle_bottom10_green">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/dialog_service_3"
+                        android:textColor="@color/white"
+                        android:textSize="15sp" />
+
+                    <ImageView
+                        android:layout_width="16dp"
+                        android:layout_height="16dp"
+                        android:layout_marginLeft="12dp"
+                        android:src="@mipmap/dialog_service_6" />
+
+                </LinearLayout>
+
+            </FrameLayout>
+
+        </LinearLayout>
+
+        <!--关闭按钮-->
+        <ImageView
+            android:id="@+id/close_iv"
+            android:layout_width="47dp"
+            android:layout_height="46dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="58dp"
+            android:src="@mipmap/close_dialog_service" />
+
+        <ImageView
+            android:layout_width="119dp"
+            android:layout_height="100dp"
+            android:layout_centerHorizontal="true"
+            android:src="@mipmap/dialog_service_1" />
+
+    </RelativeLayout>
+
+
+</RelativeLayout>

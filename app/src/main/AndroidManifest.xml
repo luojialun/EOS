@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.android.eos">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <application
+        android:name=".base.BaseApp"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".ui.activity.WelcomeActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".MainActivity"
+            android:launchMode="singleTask"
+            android:theme="@style/MainTheme" />
+        <activity
+            android:name=".ui.activity.CreateIdentityActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.activity.CreatedIdentityFreeActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".ui.activity.CreatedIdentityPayActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".ui.activity.ImportEOSWalletActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".ui.activity.CollectionCodeActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.activity.MyWalletActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.activity.WalletMessageActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.activity.ResourceManageActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.activity.CheckoutPrivateKeyActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.activity.MemoryActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".ui.activity.BoardBandActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".ui.activity.SelectWalletActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.activity.ExchangeActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.activity.PropertyAddActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
+        <activity android:name=".ui.activity.TransAndCollectionActivity" />
+        <activity android:name=".ui.activity.TransferActivity" />
+        <activity android:name=".ui.activity.PayMessageActivity"></activity>
+    </application>
+
+</manifest>

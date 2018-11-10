@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="translucent_view" type="id">id</item>
+    <item name="statusbar_view" type="id">id</item>
+</resources>
