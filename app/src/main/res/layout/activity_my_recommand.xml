@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.android.eos.ui.activity.WalletMessageActivity">
+    tools:context="com.android.eos.ui.activity.MyRecommandActivity">
 
     <!--title-->
     <LinearLayout
@@ -22,18 +22,18 @@
         <ImageView
             android:id="@+id/back_iv"
             android:layout_width="37dp"
-            android:layout_height="38dp"
-            android:layout_centerVertical="true"
+            android:layout_height="37dp"
             android:padding="12dp"
             android:src="@mipmap/back_white" />
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="22dp"
+            android:layout_marginTop="23dp"
             android:orientation="horizontal">
 
             <com.makeramen.roundedimageview.RoundedImageView
+                android:id="@+id/avatar_iv"
                 android:layout_width="76dp"
                 android:layout_height="76dp"
                 android:layout_marginLeft="18dp"
@@ -102,97 +102,45 @@
 
         </LinearLayout>
 
-
     </LinearLayout>
 
-    <RelativeLayout
-        android:id="@+id/resource_rl"
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recommand_rv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="20dp"
-        android:layout_marginTop="40dp"
-        android:background="@drawable/rectangle_radius10_white"
-        android:elevation="8dp"
-        android:paddingBottom="14dp"
-        android:paddingLeft="15dp"
-        android:paddingRight="10dp"
-        android:paddingTop="16dp">
+        android:overScrollMode="never"
+        android:scrollbars="none" />
 
-        <ImageView
-            android:id="@+id/icon_iv"
-            android:layout_width="27dp"
-            android:layout_height="25dp"
-            android:src="@mipmap/wallet_message_1" />
+    <com.flyco.tablayout.SlidingTabLayout
+        android:id="@+id/tablayout"
+        android:layout_width="wrap_content"
+        android:layout_height="28dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginTop="20dp"
+        app:tl_indicator_color="@color/green"
+        app:tl_indicator_corner_radius="1.5dp"
+        app:tl_indicator_height="2dp"
+        app:tl_indicator_width="40dp"
+        app:tl_indicator_width_equal_title="true"
+        app:tl_tab_padding="45dp"
+        app:tl_tab_space_equal="false"
+        app:tl_textBold="BOTH"
+        app:tl_textSelectColor="#333333"
+        app:tl_textUnselectColor="#A1A9B9"
+        app:tl_textsize="16sp" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="10dp"
-            android:layout_toRightOf="@+id/icon_iv"
-            android:text="@string/wallet_message_1"
-            android:textColor="#333333"
-            android:textSize="16sp"
-            android:textStyle="bold" />
-
-        <ImageView
-            android:layout_width="12dp"
-            android:layout_height="14dp"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:src="@mipmap/back_gray" />
-
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:id="@+id/checkout_key_rl"
+    <View
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="1px"
         android:layout_marginHorizontal="20dp"
-        android:layout_marginTop="40dp"
-        android:background="@drawable/rectangle_radius10_white"
-        android:elevation="8dp"
-        android:paddingBottom="14dp"
-        android:paddingLeft="15dp"
-        android:paddingRight="10dp"
-        android:paddingTop="16dp">
+        android:background="#F1F1F2" />
 
-        <ImageView
-            android:id="@+id/icon2_iv"
-            android:layout_width="27dp"
-            android:layout_height="25dp"
-            android:src="@mipmap/wallet_message_2" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="10dp"
-            android:layout_toRightOf="@+id/icon2_iv"
-            android:text="@string/wallet_message_2"
-            android:textColor="#333333"
-            android:textSize="16sp"
-            android:textStyle="bold" />
-
-        <ImageView
-            android:layout_width="12dp"
-            android:layout_height="14dp"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:src="@mipmap/back_gray" />
-
-    </RelativeLayout>
-
-    <Button
-        android:id="@+id/delete_wallet_btn"
+    <android.support.v4.view.ViewPager
+        android:id="@+id/viewpager"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="20dp"
-        android:layout_marginTop="80dp"
-        android:background="@drawable/rectangle_radius10_gray3"
-        android:elevation="8dp"
-        android:text="@string/delete_wallet"
-        android:textColor="#A1A9B9"
-        android:textSize="15sp" />
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:overScrollMode="never"
+        android:scrollbars="none" />
 
 </LinearLayout>

@@ -6,6 +6,7 @@
     android:orientation="vertical"
     tools:context="com.android.eos.ui.activity.GameActivity">
 
+    <!--title-->
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -35,34 +36,100 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-               android:layout_alignTop="@+id/back_iv"
-                android:layout_marginTop="12dp"
+                android:layout_alignTop="@+id/back_iv"
                 android:layout_centerHorizontal="true"
+                android:layout_marginTop="12dp"
                 android:orientation="vertical">
 
                 <TextView
                     android:id="@+id/title_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:text="@string/game_title"
                     android:textColor="@color/white"
                     android:textSize="18sp"
-                    android:layout_gravity="center_horizontal"
-                    android:textStyle="bold|italic"
-                    android:text="@string/game_title" />
+                    android:textStyle="bold|italic" />
 
                 <TextView
-                    android:layout_marginTop="12dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/white"
-                    android:textSize="11sp"
+                    android:layout_marginTop="12dp"
                     android:text="@string/game_title2"
-                    />
+                    android:textColor="@color/white"
+                    android:textSize="11sp" />
             </LinearLayout>
 
 
         </RelativeLayout>
 
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="179dp"
+        android:background="@drawable/rectangle_top25_white"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="19dp"
+            android:layout_marginTop="20dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <View
+                android:layout_width="3dp"
+                android:layout_height="12dp"
+                android:layout_marginLeft="12dp"
+                android:background="@drawable/rectangle_radius10_green" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="7dp"
+                android:text="@string/mine_1"
+                android:textColor="#333333"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginHorizontal="16dp"
+            android:layout_weight="1">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="      约翰逊先生以前从未乘过飞机，他读过很多关于飞行事故的书，所以有一天，当一个朋友提议带他坐他自己的小飞机去兜风时，约翰逊先生非常担心接受。然而，最后，他的朋友说服了他，说飞机很安全，约翰逊先生上了飞机。
+      他的朋友发动了引擎，开始在机场跑道上滑行。约翰逊先生听说飞行中最危险的部分是起飞和降落，所以他非常害怕，闭上了眼睛。
+      过了一两分钟，他睁开双眼朝窗外望去，然后对朋友说:“看下面那些人。它们看起来像蚂蚁一样小，不是吗?
+      约翰逊先生以前从未乘过飞机，他读过很多关于飞行事故的书，所以有一天，当一个朋友提议带他坐他自己的小飞机去兜风时，约翰逊先生非常担心接受。然而，最后，他的朋友说服了他，说飞机很安全，约翰逊先生上了飞机。
+
+      他的朋友发动了引擎，开始在机场跑道上滑行。约翰逊先生听说飞行中最危险的部分是起飞和降落，所以他非常害怕，闭上了眼睛。
+
+      过了一两分钟，他睁开双眼朝窗外望去，然后对朋友说:“看下面那些人。它们看起来像蚂蚁一样小，不是吗?" />
+
+        </ScrollView>
+
+        <Button
+            android:id="@+id/enter_game_btn"
+            android:layout_width="335dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="30dp"
+            android:layout_marginTop="21dp"
+            android:background="@mipmap/rectangle_green_bg"
+            android:paddingBottom="5dp"
+            android:text="@string/enter_game"
+            android:textColor="@color/white"
+            android:textSize="15sp" />
 
     </LinearLayout>
 

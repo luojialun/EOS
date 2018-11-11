@@ -1,0 +1,380 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.android.eos.ui.activity.HelpAndFeedbackActivity">
+
+    <!--title-->
+    <LinearLayout
+        android:id="@+id/title_ll"
+        android:layout_width="match_parent"
+        android:layout_height="157dp"
+        android:background="@mipmap/mine_bg"
+        android:orientation="vertical">
+
+        <View
+            android:id="@+id/status_bar"
+            android:layout_width="match_parent"
+            android:layout_height="14dp" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/back_iv"
+                android:layout_width="37dp"
+                android:layout_height="38dp"
+                android:layout_centerVertical="true"
+                android:padding="12dp"
+                android:src="@mipmap/back_white" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="@string/help_feedback"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                android:textStyle="bold|italic" />
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <!--搜索-->
+    <LinearLayout
+        android:layout_width="230dp"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="75dp"
+        android:background="@drawable/rectangle_radius15_white"
+        android:padding="8dp">
+
+        <ImageView
+            android:layout_width="13dp"
+            android:layout_height="13dp"
+            android:layout_gravity="center_vertical"
+            android:src="@mipmap/search_gray" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="10dp"
+            android:background="@null"
+            android:hint="我们能帮助您什么？"
+            android:textColorHint="#8893AA"
+            android:textSize="11sp" />
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/title_ll"
+        android:overScrollMode="never"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <View
+                    android:layout_width="3dp"
+                    android:layout_height="12dp"
+                    android:layout_marginLeft="12dp"
+                    android:background="@drawable/rectangle_radius10_green" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="7dp"
+                    android:text="@string/normal_question"
+                    android:textColor="#333333"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/normal_question_ll"
+                android:layout_margin="20dp"
+                android:background="@drawable/rectangle_radius10_white"
+                android:elevation="8dp"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="15dp">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="如何修改钱包密码?"
+                        android:textColor="@color/color_333333"
+                        android:textSize="14sp" />
+
+                    <ImageView
+                        android:layout_width="12dp"
+                        android:layout_height="14dp"
+                        android:layout_gravity="center_vertical"
+                        android:src="@mipmap/back_gray" />
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1px"
+                    android:background="#EAECF3" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="15dp">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="转账未打包怎么办?"
+                        android:textColor="@color/color_333333"
+                        android:textSize="14sp" />
+
+                    <ImageView
+                        android:layout_width="12dp"
+                        android:layout_height="14dp"
+                        android:layout_gravity="center_vertical"
+                        android:src="@mipmap/back_gray" />
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1px"
+                    android:background="#EAECF3" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="15dp">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="转账超时是怎么回事?"
+                        android:textColor="@color/color_333333"
+                        android:textSize="14sp" />
+
+                    <ImageView
+                        android:layout_width="12dp"
+                        android:layout_height="14dp"
+                        android:layout_gravity="center_vertical"
+                        android:src="@mipmap/back_gray" />
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1px"
+                    android:background="#EAECF3" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="15dp">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="交易所提币长时间未到账"
+                        android:textColor="@color/color_333333"
+                        android:textSize="14sp" />
+
+                    <ImageView
+                        android:layout_width="12dp"
+                        android:layout_height="14dp"
+                        android:layout_gravity="center_vertical"
+                        android:src="@mipmap/back_gray" />
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <View
+                    android:layout_width="3dp"
+                    android:layout_height="12dp"
+                    android:layout_marginLeft="12dp"
+                    android:background="@drawable/rectangle_radius10_green" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="7dp"
+                    android:text="@string/classify_question"
+                    android:textColor="#333333"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/normal_question_ll"
+                android:layout_margin="20dp"
+                android:background="@drawable/rectangle_radius10_white"
+                android:elevation="8dp"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="15dp">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="基本操作"
+                            android:textColor="@color/color_333333"
+                            android:textSize="14sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="身份/钱包/交易 "
+                            android:textSize="11sp" />
+
+                    </LinearLayout>
+
+                    <ImageView
+                        android:layout_width="12dp"
+                        android:layout_height="14dp"
+                        android:layout_gravity="center_vertical"
+                        android:src="@mipmap/back_gray" />
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1px"
+                    android:background="#EAECF3" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="15dp">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="助记词、私钥和Keystore"
+                            android:textColor="@color/color_333333"
+                            android:textSize="14sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="导入/导出/备份"
+                            android:textSize="11sp" />
+
+                    </LinearLayout>
+
+                    <ImageView
+                        android:layout_width="12dp"
+                        android:layout_height="14dp"
+                        android:layout_gravity="center_vertical"
+                        android:src="@mipmap/back_gray" />
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1px"
+                    android:background="#EAECF3" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="15dp">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="转账收款"
+                            android:textColor="@color/color_333333"
+                            android:textSize="14sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="未打包/未到账/失败"
+                            android:textSize="11sp" />
+
+                    </LinearLayout>
+
+                    <ImageView
+                        android:layout_width="12dp"
+                        android:layout_height="14dp"
+                        android:layout_gravity="center_vertical"
+                        android:src="@mipmap/back_gray" />
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+
+    </ScrollView>
+
+
+</RelativeLayout>

@@ -24,7 +24,7 @@
             android:launchMode="singleTask"
             android:theme="@style/MainTheme" />
         <activity
-            android:name=".ui.activity.CreateIdentityActivity"
+            android:name=".ui.activity.CreateEOSActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".ui.activity.CreatedIdentityFreeActivity"
@@ -83,7 +83,16 @@
         <activity
             android:name=".ui.activity.EnterPasswordActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".ui.activity.GameActivity"></activity>
+        <activity android:name=".ui.activity.GameActivity" />
+        <activity android:name=".ui.activity.CreateIdentityActivity" />
+        <activity android:name=".ui.activity.MyIdentityActivity" />
+        <activity android:name=".ui.activity.UseSettingActivity" />
+        <activity android:name=".ui.activity.NodeSettingActivity" />
+        <activity android:name=".ui.activity.NodeSettingDetailsActivity" />
+        <activity android:name=".ui.activity.HelpAndFeedbackActivity" />
+        <activity android:name=".ui.activity.UserAgreementActivity" />
+        <activity android:name=".ui.activity.AboutUsActivity" />
+        <activity android:name=".ui.activity.MyRecommandActivity"></activity>
     </application>
 
 </manifest>

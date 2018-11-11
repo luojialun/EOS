@@ -54,7 +54,8 @@ public class DiscoveryGameFragment extends BaseFragment {
         fragmentList.add(new BannerFragment());
         fragmentList.add(new BannerFragment());
         fragmentList.add(new BannerFragment());
-        bannerVp.setAdapter(new BaseFragmentPagerAdapter(getChildFragmentManager(), fragmentList));
+        BaseFragmentPagerAdapter baseFragmentPagerAdapter=new BaseFragmentPagerAdapter(getChildFragmentManager(), fragmentList);
+        bannerVp.setAdapter(baseFragmentPagerAdapter);
         bannerVp.setOffscreenPageLimit(fragmentList.size());
     }
 

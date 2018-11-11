@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.android.eos.ui.activity.NodeSettingActivity">
+
+    <include layout="@layout/title" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:background="@drawable/rectangle_radius10_white"
+        android:elevation="8dp"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:id="@+id/eth_rl"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginHorizontal="15dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="ETHEREUM"
+                android:textColor="@color/color_333333"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:id="@+id/eth_more_iv"
+                android:layout_width="12dp"
+                android:layout_height="14dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:src="@mipmap/back_gray" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="10dp"
+                android:layout_toLeftOf="@+id/eth_more_iv"
+                android:text="http://mainnet-eth.token.im"
+                android:textColor="#B0B1B9"
+                android:textSize="11sp" />
+
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:layout_marginHorizontal="15dp"
+            android:background="#EBEBEB" />
+
+        <RelativeLayout
+            android:id="@+id/bit_rl"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginHorizontal="15dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="BITCOIN"
+                android:textColor="@color/color_333333"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:id="@+id/bit_more_iv"
+                android:layout_width="12dp"
+                android:layout_height="14dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:src="@mipmap/back_gray" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="10dp"
+                android:layout_toLeftOf="@+id/bit_more_iv"
+                android:text="http://mainnet-eth.token.im"
+                android:textColor="#B0B1B9"
+                android:textSize="11sp" />
+
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:layout_marginHorizontal="15dp"
+            android:background="#EBEBEB" />
+
+        <RelativeLayout
+            android:id="@+id/eos_rl"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginHorizontal="15dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="EOS"
+                android:textColor="@color/color_333333"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:id="@+id/eos_more_iv"
+                android:layout_width="12dp"
+                android:layout_height="14dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:src="@mipmap/back_gray" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="10dp"
+                android:layout_toLeftOf="@+id/eos_more_iv"
+                android:text="http://mainnet-eth.token.im"
+                android:textColor="#B0B1B9"
+                android:textSize="11sp" />
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.android.eos.ui.activity.UserAgreementActivity">
+
+    <include layout="@layout/title" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/rectangle_top25_white"
+        android:elevation="15dp"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="28dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="15dp"
+                android:layout_height="7dp"
+                android:src="@mipmap/dialog_service_2" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="10dp"
+                android:text="@string/token_agreement"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:layout_width="15dp"
+                android:layout_height="7dp"
+                android:src="@mipmap/dialog_service_3" />
+
+        </LinearLayout>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="20dp"
+                android:text="这里是文案内容这里是文案内容这里是文案内容这里是文案 内容这里是文案内容这里是文案内容这里是文案内容这里是 文案内容这里是文案这里是文案内容这里是文案内容这里是文案内容这里是文案 内容这里是文案内容这里是文案内容这里是文案内容这里是 文案内容这里是文案这里是文案内容这里是文案内容这里是文案内容这里是文案 内容这里是文案内容这里是文案内容这里是文案内容这里是 文案内容这里是文案这里是文案内容这里是文案内容这里是文案内容这里是文案 内容这里是文案内容这里是文案内容这里是文案内容这里是 文案内容这里是文案这里是文案内容这里是文案内容这里是文案内容这里是文案 内容这里是文案内容这里是文案内容这里是文案内容这里是 文案内容这里是文案这里是文案内容这里是文案内容这里是文案内容这里是文案 内容这里是文案内容这里是文案内容这里是文案内容这里是 文案内容这里是文案这里是文案内容这里是文案内容这里是文案内容这里是文案 内容这里是文案内容这里是文案内容这里是文案内容这里是 文案内容这里是文案这里是文案内容这里是文案内容这里是文案内容这里是文案 内容这里是文案内容这里是文案内容这里是文案内容这里是 文案内容这里是文案这里是文案内容这里是文案内容这里是文案内容这里是文案 内容这里是文案内容这里是文案内容这里是文案内容这里是 文案内容这里是文案这里是文案内容这里是文案内容这里是文案内容这里是文案 内容这里是文案内容这里是文案内容这里是文案内容这里是 文案内容这里是文案这里是文案内容这里是文案内容这里是文案内容这里是文案 内容这里是文案内容这里是文案内容这里是文案内容这里是 文案内容这里是文案这里是文案内容这里是文案内容这里是文案内容这里是文案 内容这里是文案内容这里是文案内容这里是文案内容这里是 文案内容这里是文案这里是文案内容这里是文案内容这里是文案内容这里是文案 内容这里是文案内容这里是文案内容这里是文案内容这里是 文案内容这里是文案这里是文案内容这里是文案内容这里是文案内容这里是文案 内容这里是文案内容这里是文案内容这里是文案内容这里是 文案内容这里是文案这里是文案内容这里是文案内容这里是文案内容这里是文案 内容这里是文案内容这里是文案内容这里是文案内容这里是 文案内容这里是文案"
+                android:textColor="@color/color_666666" />
+
+        </ScrollView>
+
+    </LinearLayout>
+
+</LinearLayout>

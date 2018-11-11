@@ -15,4 +15,7 @@
     <color name="blue">#191970</color>
     <color name="theme_color">#4D7BFE</color>
     <color name="title_color">#FF2A2A2A</color>
+    <color name="color_999999">#999999</color>
+    <color name="color_EBEBEB">#EBEBEB</color>
+    <color name="color_666666">#666666</color>
 </resources>

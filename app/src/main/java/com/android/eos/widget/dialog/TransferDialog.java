@@ -5,7 +5,6 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.Display;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,46 +21,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * 管理dialog
+ * 转账dialog
  */
-public class ManageDialog extends Dialog implements View.OnClickListener {
+public class TransferDialog extends Dialog implements View.OnClickListener {
 
     private Context context;
 
-    public ManageDialog(@NonNull Context context) {
+    public TransferDialog(@NonNull Context context) {
         super(context, R.style.ShareDialog);
         this.context = context;
         setDialogView();
     }
 
     private void setDialogView() {
-        View contentView = LayoutInflater.from(context).inflate(R.layout.dialog_manage, null);
+        View contentView = LayoutInflater.from(context).inflate(R.layout.dialog_transfer, null);
         contentView.findViewById(R.id.close_iv).setOnClickListener(this);
-        RecyclerView contentRv = contentView.findViewById(R.id.content_rv);
-        contentRv.setLayoutManager(new LinearLayoutManager(context));
-        List<ManageBean> dataList = new ArrayList<>();
-        dataList.add(new ManageBean(R.mipmap.manage_1, "隐藏无余额资产"));
-        dataList.add(new ManageBean(R.mipmap.manage_2, "按余额排序"));
-        dataList.add(new ManageBean(R.mipmap.manage_3, "按字母排序"));
-        ManageAdapter adapter = new ManageAdapter(dataList);
-        contentRv.setAdapter(adapter);
-        adapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-                switch (position) {
-                    case 0:
-                        dismiss();
-                        break;
-                    case 1:
-                        dismiss();
-                        break;
-                    case 2:
-                        dismiss();
-                        break;
-                }
-            }
-        });
-
+        contentView.findViewById(R.id.confirm_btn).setOnClickListener(this);
 
         setContentView(contentView);
         setCancelable(true);
@@ -82,6 +57,9 @@ public class ManageDialog extends Dialog implements View.OnClickListener {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.close_iv:
+                dismiss();
+                break;
+            case R.id.confirm_btn:
                 dismiss();
                 break;
 

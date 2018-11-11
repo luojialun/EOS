@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="252dp"
+        android:scaleType="centerCrop"
+        android:src="@mipmap/create_identity_bg" />
+
+    <Button
+        android:id="@+id/create_id_free_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="54dp"
+        android:background="@mipmap/rectangle_green_bg"
+        android:paddingBottom="5dp"
+        android:text="@string/create_identity_tip1"
+        android:textColor="@color/white"
+        android:textSize="15sp" />
+
+    <Button
+        android:id="@+id/created_id_pay_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="14dp"
+        android:background="@mipmap/rectangle_gray_bg"
+        android:paddingBottom="5dp"
+        android:text="@string/create_identity_tip2"
+        android:textColor="@color/gray"
+        android:textSize="15sp" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="38dp"
+        android:layout_marginTop="18dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <ImageView
+
+            android:layout_width="12dp"
+            android:layout_height="11dp"
+            android:src="@mipmap/warning" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="7dp"
+            android:text="@string/welcome_tip1"
+            android:textColor="#ffa1a9b9"
+            android:textSize="10sp" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/import_wallet_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="22dp"
+        android:gravity="end"
+        android:paddingRight="20dp"
+        android:text="@string/welcome_tip2"
+        android:textColor="#ffa1a9b9"
+        android:textSize="10sp" />
+
+</LinearLayout>

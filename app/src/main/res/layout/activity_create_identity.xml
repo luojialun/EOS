@@ -1,74 +1,264 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:context="com.android.eos.ui.activity.CreateIdentityActivity">
 
-    <ImageView
+    <include layout="@layout/title" />
+
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="252dp"
-        android:scaleType="centerCrop"
-        android:src="@mipmap/create_identity_bg" />
+        android:layout_height="match_parent">
 
-    <Button
-        android:id="@+id/create_id_free_btn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="20dp"
-        android:layout_marginTop="54dp"
-        android:background="@mipmap/rectangle_green_bg"
-        android:paddingBottom="5dp"
-        android:text="@string/create_identity_tip1"
-        android:textColor="@color/white"
-        android:textSize="15sp" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-    <Button
-        android:id="@+id/created_id_pay_btn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="20dp"
-        android:layout_marginTop="14dp"
-        android:background="@mipmap/rectangle_gray_bg"
-        android:paddingBottom="5dp"
-        android:text="@string/create_identity_tip2"
-        android:textColor="@color/gray"
-        android:textSize="15sp" />
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@mipmap/create_free_bg">
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="38dp"
-        android:layout_marginTop="18dp"
-        android:gravity="center_vertical"
-        android:orientation="horizontal">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginHorizontal="9dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingBottom="25dp"
+                    android:paddingTop="20dp">
 
-        <ImageView
+                    <ImageView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:layout_marginLeft="20dp"
+                        android:src="@mipmap/create_free_1" />
 
-            android:layout_width="12dp"
-            android:layout_height="11dp"
-            android:src="@mipmap/warning" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="17dp"
+                        android:lineSpacingExtra="3dp"
+                        android:text="@string/create_identity_tip3"
+                        android:textColor="@color/white"
+                        android:textSize="11sp" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingLeft="7dp"
-            android:text="@string/welcome_tip1"
-            android:textColor="#ffa1a9b9"
-            android:textSize="10sp" />
+                </LinearLayout>
 
-    </LinearLayout>
+            </FrameLayout>
 
-    <TextView
-        android:id="@+id/import_wallet_tv"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="22dp"
-        android:gravity="end"
-        android:paddingRight="20dp"
-        android:text="@string/welcome_tip2"
-        android:textColor="#ffa1a9b9"
-        android:textSize="10sp" />
+            <!--身份名字-->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="23dp"
+                android:layout_marginTop="34dp"
+                android:text="@string/identity_name"
+                android:textColor="#333333"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/name_et"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="23dp"
+                android:layout_marginTop="15dp"
+                android:background="@null"
+                android:inputType="textPassword"
+                android:textSize="12sp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginBottom="9dp"
+                android:layout_marginHorizontal="23dp"
+                android:layout_marginTop="8dp"
+                android:background="#EBEBEB" />
+
+            <!--密码-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="23dp"
+                android:layout_marginTop="34dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/passward"
+                    android:textColor="#333333"
+                    android:textStyle="bold" />
+
+                <!--密码强度-->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end|center_vertical"
+                    android:orientation="horizontal">
+
+                    <View
+                        android:layout_width="9dp"
+                        android:layout_height="1dp"
+                        android:background="#50CF18" />
+
+                    <View
+                        android:layout_width="9dp"
+                        android:layout_height="1dp"
+                        android:layout_marginLeft="3dp"
+                        android:background="#50CF18" />
+
+                    <View
+                        android:layout_width="9dp"
+                        android:layout_height="1dp"
+                        android:layout_marginLeft="3dp"
+                        android:background="#50CF18" />
+
+                    <View
+                        android:layout_width="9dp"
+                        android:layout_height="1dp"
+                        android:layout_marginLeft="3dp"
+                        android:background="#50CF18" />
+
+                    <View
+                        android:layout_width="9dp"
+                        android:layout_height="1dp"
+                        android:layout_marginLeft="3dp"
+                        android:background="#D8D8D8" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="23dp"
+                android:layout_marginTop="15dp"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/password_et"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@null"
+                    android:inputType="textPassword"
+                    android:textSize="12sp" />
+
+                <ImageView
+                    android:layout_width="7dp"
+                    android:layout_height="9dp"
+                    android:layout_gravity="center_vertical"
+                    android:src="@mipmap/import_eos_1" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginBottom="9dp"
+                android:layout_marginHorizontal="23dp"
+                android:layout_marginTop="8dp"
+                android:background="#EBEBEB" />
+
+            <!--确认密码-->
+            <LinearLayout
+                android:id="@+id/confirm_ll"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="27dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="23dp"
+                    android:layout_marginTop="24dp"
+                    android:layout_weight="1"
+                    android:text="@string/confirm_passward"
+                    android:textColor="#333333"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="23dp"
+                    android:layout_marginTop="15dp"
+                    android:orientation="horizontal">
+
+                    <EditText
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@null"
+                        android:inputType="textPassword"
+                        android:textSize="12sp" />
+
+                    <ImageView
+                        android:layout_width="7dp"
+                        android:layout_height="9dp"
+                        android:layout_gravity="center_vertical"
+                        android:src="@mipmap/import_eos_1" />
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginHorizontal="23dp"
+                    android:layout_marginTop="8dp"
+                    android:background="#EBEBEB" />
+
+            </LinearLayout>
+
+            <!--密码提示-->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="23dp"
+                android:layout_marginTop="6dp"
+                android:text="@string/passward_tip"
+                android:textColor="#333333"
+                android:textStyle="bold" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="23dp"
+                android:layout_marginTop="15dp"
+                android:background="@null"
+                android:hint="@string/password_hint"
+                android:inputType="textPassword"
+                android:textSize="12sp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginHorizontal="23dp"
+                android:layout_marginTop="8dp"
+                android:background="#EBEBEB" />
+
+            <!--创建-->
+            <Button
+                android:id="@+id/create_btn"
+                android:layout_width="335dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="50dp"
+                android:background="@mipmap/rectangle_green_bg"
+                android:paddingBottom="5dp"
+                android:text="@string/create"
+                android:textColor="@color/white"
+                android:textSize="15sp" />
+
+        </LinearLayout>
+
+    </ScrollView>
 
 </LinearLayout>

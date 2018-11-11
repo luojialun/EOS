@@ -31,7 +31,7 @@ public class WelcomeActivity extends BaseActivity {
     public void OnClick(View view) {
         switch (view.getId()) {
             case R.id.create_id_btn:
-                readyGo(CreateIdentityActivity.class);
+                readyGo(CreateEOSActivity.class);
                 break;
             case R.id.import_id:
                 readyGo(ImportEOSWalletActivity.class);

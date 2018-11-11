@@ -25,6 +25,7 @@
             android:orientation="horizontal">
 
             <com.makeramen.roundedimageview.RoundedImageView
+                android:id="@+id/avatar_iv"
                 android:layout_width="76dp"
                 android:layout_height="76dp"
                 android:layout_marginLeft="18dp"
@@ -61,7 +62,7 @@
                         android:background="@drawable/rectangle_radius15_edit"
                         android:paddingHorizontal="7dp"
                         android:paddingVertical="3dp"
-                        android:text="@string/email"
+                        android:text="@string/subscribe_email"
                         android:textColor="#99ffffff"
                         android:textSize="10sp" />
 
@@ -93,7 +94,6 @@
 
         </LinearLayout>
 
-
     </LinearLayout>
 
     <LinearLayout
@@ -121,6 +121,7 @@
 
     <!--使用设置-->
     <RelativeLayout
+        android:id="@+id/use_setting_rl"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="20dp"
@@ -174,6 +175,7 @@
 
     <!--帮助反馈-->
     <RelativeLayout
+        android:id="@+id/help_feedback_rl"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="20dp"
@@ -227,6 +229,7 @@
 
     <!--用户协议-->
     <RelativeLayout
+        android:id="@+id/user_agreement_rl"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="20dp"
@@ -280,6 +283,7 @@
 
     <!--关于我们-->
     <RelativeLayout
+        android:id="@+id/about_us_rl"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="20dp"
@@ -331,10 +335,13 @@
     </RelativeLayout>
 
     <Button
-        android:layout_width="match_parent"
+        android:id="@+id/my_recommand_btn"
+        android:layout_width="335dp"
         android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginHorizontal="20dp"
         android:layout_marginTop="40dp"
-        android:background="@mipmap/rectangle_green_bg"
+        android:background="@mipmap/rectangle_green_bg2"
         android:paddingBottom="5dp"
         android:text="@string/my_recommand"
         android:textColor="@color/white"

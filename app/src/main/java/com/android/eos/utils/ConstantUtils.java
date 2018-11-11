@@ -8,4 +8,5 @@ public class ConstantUtils {
 
     public static final float RESEARCH_BANNER_SCALE = 0.7965f;//anner的卡片高度缩放比例
 
+    public static final String TITLE ="title" ;
 }
