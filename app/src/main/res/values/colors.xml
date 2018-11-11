@@ -11,5 +11,8 @@
     <color name="gray4">#F8F8F9</color>
     <color name="green">#00CE9F</color>
     <color name="black">#000000</color>
+    <color name="color_333333">#333333</color>
     <color name="blue">#191970</color>
+    <color name="theme_color">#4D7BFE</color>
+    <color name="title_color">#FF2A2A2A</color>
 </resources>

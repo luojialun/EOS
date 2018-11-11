@@ -71,9 +71,19 @@
             android:name=".ui.activity.PropertyAddActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden" />
-        <activity android:name=".ui.activity.TransAndCollectionActivity" />
-        <activity android:name=".ui.activity.TransferActivity" />
-        <activity android:name=".ui.activity.PayMessageActivity"></activity>
+        <activity
+            android:name=".ui.activity.TransAndCollectionActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.activity.TransferActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.activity.PayDetailsActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.activity.EnterPasswordActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".ui.activity.GameActivity"></activity>
     </application>
 
 </manifest>

@@ -8,6 +8,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import org.greenrobot.eventbus.EventBus;
+
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
@@ -18,10 +20,14 @@ import butterknife.Unbinder;
 public abstract class BaseFragment extends Fragment {
 
     private Unbinder unBinder;
+    private boolean eventBusState=false;
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View contentView = inflater.inflate(setViewId(), null);
+        if (eventBusState) {
+            EventBus.getDefault().register(this);
+        }
         unBinder = ButterKnife.bind(this, contentView);
         initView();
         initData();
@@ -40,6 +46,10 @@ public abstract class BaseFragment extends Fragment {
 
     public abstract void initData();
 
+    public void bindEventBus(boolean eventBusState){
+        this.eventBusState=eventBusState;
+    }
+
     public void readyGo(Class<?> clazz) {
         Intent intent = new Intent(getActivity(), clazz);
         startActivity(intent);
@@ -53,6 +63,9 @@ public abstract class BaseFragment extends Fragment {
     @Override
     public void onDestroy() {
         super.onDestroy();
+        if (eventBusState) {
+            EventBus.getDefault().unregister(this);
+        }
         unBinder.unbind();
     }
 }

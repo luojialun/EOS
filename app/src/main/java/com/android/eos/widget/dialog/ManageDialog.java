@@ -50,13 +50,13 @@ public class ManageDialog extends Dialog implements View.OnClickListener {
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
                 switch (position) {
+                    case 0:
+                        dismiss();
+                        break;
                     case 1:
                         dismiss();
                         break;
                     case 2:
-                        dismiss();
-                        break;
-                    case 3:
                         dismiss();
                         break;
                 }

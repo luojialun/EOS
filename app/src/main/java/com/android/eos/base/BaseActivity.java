@@ -7,6 +7,8 @@ import android.support.v7.app.AppCompatActivity;
 
 import com.android.eos.utils.SystemBarHelper;
 
+import org.greenrobot.eventbus.EventBus;
+
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
@@ -17,15 +19,20 @@ import butterknife.Unbinder;
 public abstract class BaseActivity extends AppCompatActivity {
 
     private Unbinder unBinder;
+    private boolean eventBusState = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         SystemBarHelper.immersiveStatusBar(this, 0);//沉浸式状态栏
         setContentView(setViewId());
+        if (eventBusState) {
+            EventBus.getDefault().register(this);
+        }
         unBinder = ButterKnife.bind(this);
         initView();
         initData();
+
 
     }
 
@@ -57,9 +64,16 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     public abstract void initData();
 
+    public void bindEventBus(boolean eventBusState) {
+        this.eventBusState = eventBusState;
+    }
+
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        if (eventBusState) {
+            EventBus.getDefault().unregister(this);
+        }
         unBinder.unbind();
     }
 }
