@@ -154,5 +154,13 @@
     <string name="terms_service">服务条款</string>
     <string name="version_daily">版本日志</string>
     <string name="version_update">版本更新</string>
+    <string name="set_secret">设置密码</string>
+    <string name="complete">完成</string>
+    <string name="please_enter_password">请输入密码</string>
+    <string name="please_confirm_password">请确认密码</string>
+    <string name="password_difference">两次密码不一致</string>
+    <string name="please_enter_account">请输入账号</string>
+    <string name="please_enter_ownerkey">请输入owner key</string>
+    <string name="please_enter_activerkey">请输入activer key</string>
 
 </resources>

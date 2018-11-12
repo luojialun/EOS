@@ -47,7 +47,7 @@ public class BaseApp extends Application {
     public void initOkGo() throws IOException {
         HttpHeaders headers  = new HttpHeaders();
        /* if (new SPCookieStore(this).getAllCookie().size() != 0) {
-            headers.put("Set-Cookie", String.valueOf(mSPCookieStore.getCookie(HttpUrl.parse(BaseUrl.HTTP_Get_code_auth))));
+            headers.put("Set-Cookie", String.valueOf(mSPCookieStore.getCookie(HttpUrl.parse(UrlHelper.HTTP_Get_code_auth))));
         }
         headers.put("version", "3.0");
         if (Utils.getSpUtils().getString("loginmode", "").equals("phone")) {

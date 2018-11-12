@@ -92,7 +92,8 @@
         <activity android:name=".ui.activity.HelpAndFeedbackActivity" />
         <activity android:name=".ui.activity.UserAgreementActivity" />
         <activity android:name=".ui.activity.AboutUsActivity" />
-        <activity android:name=".ui.activity.MyRecommandActivity"></activity>
+        <activity android:name=".ui.activity.MyRecommandActivity" />
+        <activity android:name=".ui.activity.SetSecretActivity"></activity>
     </application>
 
 </manifest>

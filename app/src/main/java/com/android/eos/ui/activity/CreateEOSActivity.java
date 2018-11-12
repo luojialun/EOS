@@ -35,7 +35,7 @@ public class CreateEOSActivity extends BaseActivity {
                 ServiceDialog serviceDialog = new ServiceDialog(this, new ServiceDialog.OnNextListener() {
                     @Override
                     public void next() {
-                        readyGo(CreatedIdentityFreeActivity.class);
+                        readyGo(SetSecretActivity.class);
                     }
                 });
                 serviceDialog.show();

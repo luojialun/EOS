@@ -63,6 +63,7 @@
                 android:textStyle="bold" />
 
             <EditText
+                android:id="@+id/account_et"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="23dp"
@@ -90,6 +91,7 @@
                 android:textStyle="bold" />
 
             <EditText
+                android:id="@+id/ownerkey_et"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="23dp"
@@ -117,6 +119,7 @@
                 android:textStyle="bold" />
 
             <EditText
+                android:id="@+id/activerkey_et"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="23dp"
