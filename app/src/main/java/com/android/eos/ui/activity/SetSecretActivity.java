@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.android.eos.R;
 import com.android.eos.base.BaseActivity;
+import com.android.eos.data.UserInfo;
 import com.android.eos.utils.ConstantUtils;
 import com.android.eos.utils.ToastUtils;
 
@@ -65,15 +66,18 @@ public class SetSecretActivity extends BaseActivity {
                 finish();
                 break;
             case R.id.complete_btn:
-                if (TextUtils.isEmpty(passwordEt.getText().toString())) {
+                String password=passwordEt.getText().toString();
+                String passwordConfirm=confirmEt.getText().toString();
+                String passwordHit=passwordEt.getText().toString();
+                if (TextUtils.isEmpty(password)) {
                     ToastUtils.showToast(getResources().getString(R.string.please_enter_password));
                     return;
                 }
-                if (TextUtils.isEmpty(confirmEt.getText().toString())) {
+                if (TextUtils.isEmpty(passwordConfirm)) {
                     ToastUtils.showToast(getResources().getString(R.string.please_confirm_password));
                     return;
                 }
-                if (!passwordEt.getText().toString().equals(confirmEt.getText().toString())) {
+                if (!password.equals(passwordConfirm)) {
                     ToastUtils.showToast(getResources().getString(R.string.password_difference));
                     return;
                 }

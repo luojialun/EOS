@@ -2,6 +2,7 @@ package com.android.eos.ui.activity;
 
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 import android.widget.TextView;
 
 import com.android.eos.R;
@@ -12,6 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 
 public class SelectWalletActivity extends BaseActivity {
 
@@ -51,5 +53,14 @@ public class SelectWalletActivity extends BaseActivity {
     @Override
     public void initData() {
 
+    }
+
+    @OnClick({R.id.back_iv})
+    public void OnClick(View view) {
+        switch (view.getId()) {
+            case R.id.back_iv:
+                finish();
+                break;
+        }
     }
 }

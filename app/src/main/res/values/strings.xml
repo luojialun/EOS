@@ -162,5 +162,6 @@
     <string name="please_enter_account">请输入账号</string>
     <string name="please_enter_ownerkey">请输入owner key</string>
     <string name="please_enter_activerkey">请输入activer key</string>
+    <string name="create_error">\"未能成功创建，请重试~\"</string>
 
 </resources>

@@ -1,7 +1,7 @@
 package com.android.eos.ui.activity;
 
+import android.content.Intent;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -9,13 +9,16 @@ import android.widget.TextView;
 import com.android.eos.MainActivity;
 import com.android.eos.R;
 import com.android.eos.base.BaseActivity;
-import com.android.eos.net.UrlHelper;
+import com.android.eos.bean.CreateEOSResponse;
+import com.android.eos.data.UserInfo;
 import com.android.eos.net.HttpUtils;
+import com.android.eos.net.UrlHelper;
 import com.android.eos.net.callbck.JsonCallback;
 import com.android.eos.utils.ConstantUtils;
 import com.android.eos.utils.LogUtils;
 import com.android.eos.utils.RegexUtil;
 import com.android.eos.utils.ToastUtils;
+import com.android.eos.widget.dialog.ShowDialog;
 import com.lzy.okgo.model.Response;
 
 import org.consenlabs.tokencore.wallet.Identity;
@@ -51,6 +54,9 @@ public class CreatedIdentityFreeActivity extends BaseActivity implements Keystor
 
     private String password;
     private String passwordHint;
+    private Wallet eosWallet;
+    private String ownerKey;
+    private String activerKey;
 
     @Override
     public int setViewId() {
@@ -78,8 +84,13 @@ public class CreatedIdentityFreeActivity extends BaseActivity implements Keystor
         WalletManager.storage = this;
         WalletManager.scanWallets();
 
-        createWallet(password, passwordHint);
-
+        showProgress();
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                createWallet(password, passwordHint);
+            }
+        }).start();
     }
 
     @OnClick({R.id.back_iv, R.id.create_btn})
@@ -112,25 +123,45 @@ public class CreatedIdentityFreeActivity extends BaseActivity implements Keystor
         Identity identity = Identity.createIdentity("user", password, passwordHint, Network.MAINNET, Metadata.FROM_NEW_IDENTITY);
         List<String> chainTypeList = new ArrayList<>();
         chainTypeList.add(ChainType.EOS);
-        Wallet eosWallet = identity.deriveWallets(chainTypeList, password).get(0);
-        LogUtils.loge("private key-->" + eosWallet.exportPrivateKeys(password).get(0).getPrivateKey());
-        LogUtils.loge("public key-->" + eosWallet.exportPrivateKeys(password).get(0).getPublicKey());
-        ownerKeyEt.setText(eosWallet.exportPrivateKeys(password).get(0).getPublicKey());
-        activerKeyet.setText(eosWallet.exportPrivateKeys(password).get(0).getPublicKey());
+        eosWallet = identity.deriveWallets(chainTypeList, password).get(0);
+        ownerKey = eosWallet.exportPrivateKeys(password).get(0).getPublicKey();
+        activerKey = eosWallet.exportPrivateKeys(password).get(0).getPublicKey();
+        LogUtils.loge("owner key-->" + ownerKey);
+        LogUtils.loge("acitver key-->" + activerKey);
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                ShowDialog.dissmiss();
+                ownerKeyEt.setText(ownerKey);
+                activerKeyet.setText(activerKey);
+            }
+        });
+
     }
 
     private void createEOS() {
+        showProgress();
         Map<String, String> paramsMap = new HashMap<>();
         paramsMap.put("account", accountEt.getText().toString());
         paramsMap.put("owner", ownerKeyEt.getText().toString());
         paramsMap.put("active", activerKeyet.getText().toString());
         HttpUtils.getRequets(UrlHelper.createEOS, this, paramsMap, new JsonCallback<String>() {
-
             @Override
             public void onSuccess(Response<String> response) {
                 super.onSuccess(response);
-                LogUtils.loge(response.body().toString());
-                readyGo(MainActivity.class);
+                CreateEOSResponse createEOSResponse = (CreateEOSResponse) parseStringToBean(response.body().toString(), CreateEOSResponse.class);
+                if (createEOSResponse.isRet()) {
+                    UserInfo.setTid(createEOSResponse.getTid());
+                    UserInfo.setOwnerKey(ownerKey);
+                    UserInfo.setActiverKey(activerKey);
+                    UserInfo.setId(eosWallet.getId());
+                    UserInfo.setAddress(eosWallet.getAddress());
+                    UserInfo.setPassword(password);
+                    UserInfo.setPasswordHit(passwordHint);
+                    MainActivity.readGoMain(CreatedIdentityFreeActivity.this);
+                } else {
+                    ToastUtils.showToast(getResources().getString(R.string.create_error));
+                }
             }
         });
 
