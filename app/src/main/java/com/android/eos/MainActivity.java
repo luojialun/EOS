@@ -23,6 +23,9 @@ import java.util.List;
 
 import butterknife.BindView;
 
+/**
+ * 主页
+ */
 public class MainActivity extends BaseActivity {
 
     @BindView(R.id.bottom_tablayout)

@@ -1,14 +1,23 @@
 package com.android.eos.ui.activity;
 
+import android.text.TextUtils;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.eos.MainActivity;
 import com.android.eos.R;
 import com.android.eos.base.BaseActivity;
+import com.android.eos.utils.ToastUtils;
+
+import org.consenlabs.tokencore.wallet.Wallet;
+import org.consenlabs.tokencore.wallet.WalletManager;
+import org.consenlabs.tokencore.wallet.model.ChainType;
+import org.consenlabs.tokencore.wallet.model.Metadata;
+import org.consenlabs.tokencore.wallet.model.Network;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -24,6 +33,15 @@ public class ImportEOSWalletActivity extends BaseActivity {
     LinearLayout tipLl;
     @BindView(R.id.password_et)
     EditText passwordEt;
+    @BindView(R.id.private_key_et)
+    EditText privateKeyEt;
+    @BindView(R.id.password_hint_et)
+    EditText passwordHintEt;
+
+    private String privateKey;
+    private String password;
+    private String passwordHint;
+
 
     @Override
     public int setViewId() {
@@ -59,12 +77,29 @@ public class ImportEOSWalletActivity extends BaseActivity {
                 finish();
                 break;
             case R.id.create_btn:
-                MainActivity.readGoMain(ImportEOSWalletActivity.this);
-                break;
-            case R.id.password_et:
-
+                privateKey = privateKeyEt.getText().toString();
+                password = passwordEt.getText().toString();
+                passwordHint = passwordHintEt.getText().toString();
+                if (TextUtils.isEmpty(privateKey)) {
+                    ToastUtils.showToast(R.string.please_enter_private_key);
+                    return;
+                }
+                if (TextUtils.isEmpty(password)) {
+                    ToastUtils.showToast(R.string.please_enter_password);
+                    return;
+                }
+                importWallet(privateKey, password);
                 break;
         }
+    }
+
+    public void importWallet(String privateKey, String password) {
+        Metadata metadata = new Metadata();
+        metadata.setChainType(ChainType.EOS);
+        metadata.setNetwork(Network.MAINNET);
+        Wallet eosWallet = WalletManager.importWalletFromPrivateKey(metadata, privateKey, password, true);
+        String publicKey = eosWallet.exportPrivateKeys(password).get(0).getPublicKey();
+
     }
 
 }

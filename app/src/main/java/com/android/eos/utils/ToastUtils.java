@@ -3,6 +3,7 @@ package com.android.eos.utils;
 import android.content.Context;
 import android.widget.Toast;
 
+import com.android.eos.R;
 import com.android.eos.base.BaseApp;
 
 public class ToastUtils {
@@ -20,6 +21,12 @@ public class ToastUtils {
     public static void showToast(String content) {
         if (null != BaseApp.getContext()) {
             Toast.makeText(BaseApp.getContext(), content, Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    public static void showToast(int contentId) {
+        if (null != BaseApp.getContext()) {
+            Toast.makeText(BaseApp.getContext(), BaseApp.getContext().getResources().getString(contentId), Toast.LENGTH_SHORT).show();
         }
     }
 

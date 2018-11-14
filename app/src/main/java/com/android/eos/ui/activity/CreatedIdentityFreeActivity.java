@@ -57,6 +57,7 @@ public class CreatedIdentityFreeActivity extends BaseActivity implements Keystor
     private Wallet eosWallet;
     private String ownerKey;
     private String activerKey;
+    private String privateKey;
 
     @Override
     public int setViewId() {
@@ -73,6 +74,7 @@ public class CreatedIdentityFreeActivity extends BaseActivity implements Keystor
     private void initParam() {
         password = getIntent().getStringExtra(ConstantUtils.PASSWORD);
         passwordHint = getIntent().getStringExtra(ConstantUtils.PASSWORD_HINT);
+
     }
 
     private void initTitle() {
@@ -126,6 +128,7 @@ public class CreatedIdentityFreeActivity extends BaseActivity implements Keystor
         eosWallet = identity.deriveWallets(chainTypeList, password).get(0);
         ownerKey = eosWallet.exportPrivateKeys(password).get(0).getPublicKey();
         activerKey = eosWallet.exportPrivateKeys(password).get(0).getPublicKey();
+        privateKey = eosWallet.exportPrivateKey(password);
         LogUtils.loge("owner key-->" + ownerKey);
         LogUtils.loge("acitver key-->" + activerKey);
         runOnUiThread(new Runnable() {
@@ -152,12 +155,14 @@ public class CreatedIdentityFreeActivity extends BaseActivity implements Keystor
                 CreateEOSResponse createEOSResponse = (CreateEOSResponse) parseStringToBean(response.body().toString(), CreateEOSResponse.class);
                 if (createEOSResponse.isRet()) {
                     UserInfo.setTid(createEOSResponse.getTid());
+                    UserInfo.setAccount(accountEt.getText().toString());
                     UserInfo.setOwnerKey(ownerKey);
                     UserInfo.setActiverKey(activerKey);
                     UserInfo.setId(eosWallet.getId());
                     UserInfo.setAddress(eosWallet.getAddress());
                     UserInfo.setPassword(password);
                     UserInfo.setPasswordHit(passwordHint);
+                    UserInfo.setPrivateKey(privateKey);
                     MainActivity.readGoMain(CreatedIdentityFreeActivity.this);
                 } else {
                     ToastUtils.showToast(getResources().getString(R.string.create_error));

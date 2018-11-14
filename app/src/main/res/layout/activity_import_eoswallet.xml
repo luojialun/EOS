@@ -39,6 +39,7 @@
                 android:gravity="start"
                 android:hint="@string/import_eos_wallet_tip2"
                 android:padding="12dp"
+                android:text="5HwNWDNNnyQxmwjhLYBp9CmNfRxShV37C8hp6pjiw51r7kYEkQU"
                 android:textSize="12sp" />
 
             <LinearLayout
@@ -157,6 +158,7 @@
                         android:orientation="horizontal">
 
                         <EditText
+                            android:id="@+id/confirm_et"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
@@ -219,6 +221,7 @@
                 android:textStyle="bold" />
 
             <EditText
+                android:id="@+id/password_hint_et"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="23dp"

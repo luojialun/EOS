@@ -46,11 +46,7 @@ public class MyRecommandActivity extends BaseActivity implements BaseQuickAdapte
     }
 
     private void initAdapter() {
-        List<String> dataList = new ArrayList<>();
-        for (int i = 0; i < 2; i++) {
-            dataList.add("1");
-        }
-        adapter = new MoneyListAdapter(dataList);
+        adapter = new MoneyListAdapter(null);
         recommandRv.setLayoutManager(new LinearLayoutManager(this));
         recommandRv.setAdapter(adapter);
         adapter.setOnItemChildClickListener(this);

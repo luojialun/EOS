@@ -10,6 +10,22 @@ import java.util.Map;
  * app网络请求管理类
  */
 public class HttpUtils {
+
+    /**
+     * Gets requets.
+     *
+     * @param <T>      the type parameter
+     * @param url      the url
+     * @param tag      the tag
+     * @param callback the callback
+     */
+    public static <T> void getRequets(String url, Object tag,JsonCallback<T> callback) {
+        OkGo.<T>get(url)
+                .tag(tag)
+                .execute(callback);
+    }
+
+
     /**
      * Gets requets.
      *

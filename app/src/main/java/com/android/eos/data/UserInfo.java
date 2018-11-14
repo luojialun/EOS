@@ -22,6 +22,26 @@ public class UserInfo {
 
     public final static String PASSWORD_HIT = "password_hit";
 
+    public final static String ACCOUNT = "account";
+
+    public final static String PRIVATE_KEY = "privateKey";
+
+    public static void setPrivateKey(String privateKey) {
+        SPUtils.getInstance().put(PRIVATE_KEY, privateKey);
+    }
+
+    public static String getPrivateKey() {
+        return SPUtils.getInstance().getString(PRIVATE_KEY);
+    }
+
+    public static void setAccount(String account) {
+        SPUtils.getInstance().put(ACCOUNT, account);
+    }
+
+    public static String getAccount() {
+        return SPUtils.getInstance().getString(ACCOUNT);
+    }
+
     public static void setPassword(String password) {
         SPUtils.getInstance().put(PASSWORD, password);
     }
