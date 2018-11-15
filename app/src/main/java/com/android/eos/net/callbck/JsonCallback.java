@@ -74,13 +74,11 @@ public abstract class JsonCallback<T> extends AbsCallback<T> {
 
     @Override
     public void onSuccess(com.lzy.okgo.model.Response<T> response) {
-        ShowDialog.dissmiss();
     }
 
     @Override
     public void onError(com.lzy.okgo.model.Response<T> response) {
         super.onError(response);
-        ShowDialog.dissmiss();
         int code = response.code();
         if (code == 404) {
             ToastUtils.showToast(BaseApp.getContext().getResources().getString(R.string.url_error));

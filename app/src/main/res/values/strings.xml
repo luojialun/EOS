@@ -164,5 +164,6 @@
     <string name="please_enter_activerkey">请输入activer key</string>
     <string name="create_error">\"未能成功创建，请重试~\"</string>
     <string name="please_enter_private_key">请输入明文私钥</string>
+    <string name="import_wallet_error">导入钱包失败</string>
 
 </resources>

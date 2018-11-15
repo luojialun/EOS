@@ -39,8 +39,10 @@
                 android:gravity="start"
                 android:hint="@string/import_eos_wallet_tip2"
                 android:padding="12dp"
-                android:text="5HwNWDNNnyQxmwjhLYBp9CmNfRxShV37C8hp6pjiw51r7kYEkQU"
+                android:text="5HwNWDNNnyQxmwjhLYBp9CmNfRxSHV37C8hp6pjiw51r7kYEkQU"
                 android:textSize="12sp" />
+            <!--android:text="5HwNWDNNnyQxmwjhLYBp9CmNfRxSHV37C8hp6pjiw51r7kYEkQU"-->
+            <!--android:text="5Jmb86Ef3gLcpKjRQJgARKtCN4uaLJEZNXYKHx8Ak3q8bqp6hfg"-->
 
             <LinearLayout
                 android:layout_width="match_parent"

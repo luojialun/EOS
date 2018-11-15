@@ -4,6 +4,7 @@ import android.support.annotation.Nullable;
 
 import com.android.eos.R;
 import com.android.eos.bean.CurrencyListResponse;
+import com.android.eos.bean.MixCurrencyListBean;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 
@@ -12,14 +13,14 @@ import java.util.List;
 /**
  * 货币列表适配器
  */
-public class MoneyListAdapter extends BaseQuickAdapter<CurrencyListResponse.EOSBean, BaseViewHolder> {
+public class MoneyListAdapter extends BaseQuickAdapter<MixCurrencyListBean, BaseViewHolder> {
 
-    public MoneyListAdapter(@Nullable List<CurrencyListResponse.EOSBean> data) {
+    public MoneyListAdapter(@Nullable List<MixCurrencyListBean> data) {
         super(R.layout.item_money_list, data);
     }
 
     @Override
-    protected void convert(BaseViewHolder helper, CurrencyListResponse.EOSBean item) {
+    protected void convert(BaseViewHolder helper, MixCurrencyListBean item) {
 
 
 

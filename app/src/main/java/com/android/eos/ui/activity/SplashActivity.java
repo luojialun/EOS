@@ -27,7 +27,7 @@ public class SplashActivity extends BaseActivity {
 
         TimerTask task = new TimerTask() {
             public void run() {
-                if (TextUtils.isEmpty(UserInfo.getTid())) {
+                if (TextUtils.isEmpty(UserInfo.getId())) {
                     readyGoThenKill(WelcomeActivity.class);
                 } else {
                     readyGoThenKill(MainActivity.class);

@@ -130,10 +130,11 @@
                 android:textStyle="bold" />
 
             <TextView
+                android:id="@+id/wallet_sum_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="9dp"
-                android:text="20,961.84"
+                android:text="0"
                 android:textColor="#333333"
                 android:textSize="31sp"
                 android:textStyle="bold" />
@@ -152,9 +153,10 @@
             android:paddingVertical="3dp">
 
             <TextView
+                android:id="@+id/account_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="63ZFG57J6D1Sd14g8s7a...6a8rhd3r5gA354H6D"
+                tools:text="63ZFG57J6D1Sd14g8s7a...6a8rhd3r5gA354H6D"
                 android:textColor="#A1A9B9"
                 android:textSize="11sp" />
 

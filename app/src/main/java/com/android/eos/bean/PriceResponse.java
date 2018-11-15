@@ -39,7 +39,7 @@ public class PriceResponse {
     public static class PriceBean{
         private String name;
         private String symbol;
-        private String price;
+        private double price;
         private String high;
         private String low;
         private String hist_high;
@@ -69,11 +69,11 @@ public class PriceResponse {
             this.symbol = symbol;
         }
 
-        public String getPrice() {
+        public double getPrice() {
             return price;
         }
 
-        public void setPrice(String price) {
+        public void setPrice(double price) {
             this.price = price;
         }
 

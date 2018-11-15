@@ -3,12 +3,16 @@ package com.android.eos.ui.fragment;
 
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.widget.TextView;
 
 import com.android.eos.R;
 import com.android.eos.base.BaseFragment;
 import com.android.eos.bean.CurrencyListResponse;
+import com.android.eos.bean.KeyAccountResponse;
+import com.android.eos.bean.MixCurrencyListBean;
 import com.android.eos.bean.PriceResponse;
 import com.android.eos.data.UserInfo;
 import com.android.eos.net.HttpUtils;
@@ -27,7 +31,9 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.google.gson.Gson;
 import com.lzy.okgo.model.Response;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import butterknife.BindView;
@@ -40,8 +46,15 @@ public class PropertyFragment extends BaseFragment implements BaseQuickAdapter.O
 
     @BindView(R.id.money_rv)
     RecyclerView moneyRv;
+    @BindView(R.id.wallet_sum_tv)
+    TextView walletSumTv;
+    @BindView(R.id.account_tv)
+    TextView accountTv;
 
+    private double walletSum = 0;
     private MoneyListAdapter adapter;
+    private List<MixCurrencyListBean> mixCurrencyListBeanList = new ArrayList<>();  //货币列表数据组装类
+    private int getBalanceTimes = 0;//getBalance方法请求次数
 
     @Override
     public int setViewId() {
@@ -62,12 +75,46 @@ public class PropertyFragment extends BaseFragment implements BaseQuickAdapter.O
 
     @Override
     public void initData() {
-        getCurrencyList();
         getKeyAccounts();
     }
 
-    private void getCurrencyList() {
+    /**
+     * 公钥查账号
+     */
+    private void getKeyAccounts() {
         showProgress();
+        Map<String, String> paramsMap = new HashMap<>();
+        paramsMap.put("public_key", UserInfo.getOwnerKey());
+        String params = new Gson().toJson(paramsMap);
+        HttpUtils.postRequest(UrlHelper.getKeyAccounts, getActivity(), params, new JsonCallback<String>() {
+            @Override
+            public void onSuccess(Response<String> response) {
+                super.onSuccess(response);
+                KeyAccountResponse keyAccountResponse = (KeyAccountResponse) parseStringToBean(response.body().toString(), KeyAccountResponse.class);
+                if (null != keyAccountResponse && null != keyAccountResponse.getAccount_names() && !TextUtils.isEmpty(keyAccountResponse.getAccount_names().get(0))) {
+                    UserInfo.setAccount(keyAccountResponse.getAccount_names().get(0));
+                }
+                accountTv.setText(UserInfo.getAccount());
+                getCurrencyList();
+                // getAccount();
+            }
+        });
+    }
+
+    private void getAccount() {
+        Map<String, String> paramsMap = new HashMap<>();
+        paramsMap.put("account_name", UserInfo.getAccount());
+        String params = new Gson().toJson(paramsMap);
+        HttpUtils.postRequest(UrlHelper.getAccount, getActivity(), params, new JsonCallback<String>() {
+            @Override
+            public void onSuccess(Response<String> response) {
+                super.onSuccess(response);
+                LogUtils.loge("account msg-->" + response.body().toString());
+            }
+        });
+    }
+
+    private void getCurrencyList() {
         HttpUtils.getRequets(UrlHelper.getCurrencyList, getActivity(), null, new JsonCallback<String>() {
             @Override
             public void onSuccess(Response<String> response) {
@@ -77,6 +124,9 @@ public class PropertyFragment extends BaseFragment implements BaseQuickAdapter.O
                 for (CurrencyListResponse.EOSBean eosBean : currencyListResponse.getEos()) {
                     symbol.append(eosBean.getName() + ",");
                     getCurrencyBalance(eosBean.getAddress(), UserInfo.getAccount());
+                    MixCurrencyListBean mixCurrencyListBean = new MixCurrencyListBean();
+                    mixCurrencyListBean.setEosBean(eosBean);
+                    mixCurrencyListBeanList.add(mixCurrencyListBean);
                 }
                 symbol.deleteCharAt(symbol.length() - 1);
                 getPrice(symbol.toString());
@@ -98,7 +148,18 @@ public class PropertyFragment extends BaseFragment implements BaseQuickAdapter.O
             @Override
             public void onSuccess(Response<String> response) {
                 super.onSuccess(response);
+                LogUtils.loge("price-->" + response.body().toString());
                 PriceResponse priceResponse = (PriceResponse) parseStringToBean(response.body().toString(), PriceResponse.class);
+                for (PriceResponse.PriceBean priceBean : priceResponse.getData()) {
+                    walletSum += priceBean.getPrice();
+                    walletSumTv.setText(String.valueOf(walletSum));
+                    for (MixCurrencyListBean mixCurrencyListBean : mixCurrencyListBeanList) {
+                        if (mixCurrencyListBean.getEosBean().getAddress().equals(priceBean.getSymbol())) {
+                            mixCurrencyListBean.setPriceBean(priceBean);
+                            continue;
+                        }
+                    }
+                }
 
             }
 
@@ -106,19 +167,6 @@ public class PropertyFragment extends BaseFragment implements BaseQuickAdapter.O
             public void onError(Response<String> response) {
                 super.onError(response);
 
-            }
-        });
-    }
-
-    private void getKeyAccounts() {
-        Map<String, String> paramsMap = new HashMap<>();
-        paramsMap.put("public_key", UserInfo.getOwnerKey());
-        String params = new Gson().toJson(paramsMap);
-        HttpUtils.postRequest(UrlHelper.getKeyAccounts, getActivity(), params, new JsonCallback<String>() {
-            @Override
-            public void onSuccess(Response<String> response) {
-                super.onSuccess(response);
-                LogUtils.loge("key account-->" + response.body().toString());
             }
         });
     }
@@ -132,7 +180,17 @@ public class PropertyFragment extends BaseFragment implements BaseQuickAdapter.O
             @Override
             public void onSuccess(Response<String> response) {
                 super.onSuccess(response);
-                LogUtils.loge("getCurrencyBalance-->" + response.body().toString());
+                for (MixCurrencyListBean mixCurrencyListBean : mixCurrencyListBeanList) {
+                    if (mixCurrencyListBean.getEosBean().getAddress().equals(code)) {
+                        mixCurrencyListBean.setCount(response.body().toString());
+                        break;
+                    }
+                }
+                getBalanceTimes++;
+                if (getBalanceTimes == mixCurrencyListBeanList.size()) {
+                    ShowDialog.dissmiss();
+                    adapter.setNewData(mixCurrencyListBeanList);
+                }
             }
         });
     }

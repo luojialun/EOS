@@ -11,13 +11,24 @@ import android.widget.Toast;
 import com.android.eos.MainActivity;
 import com.android.eos.R;
 import com.android.eos.base.BaseActivity;
+import com.android.eos.data.UserInfo;
 import com.android.eos.utils.ToastUtils;
+import com.android.eos.widget.dialog.ShowDialog;
 
+import org.bitcoinj.core.ECKey;
+import org.consenlabs.tokencore.wallet.Identity;
+import org.consenlabs.tokencore.wallet.KeystoreStorage;
 import org.consenlabs.tokencore.wallet.Wallet;
 import org.consenlabs.tokencore.wallet.WalletManager;
+import org.consenlabs.tokencore.wallet.keystore.EOSKeystore;
 import org.consenlabs.tokencore.wallet.model.ChainType;
+import org.consenlabs.tokencore.wallet.model.KeyPair;
 import org.consenlabs.tokencore.wallet.model.Metadata;
 import org.consenlabs.tokencore.wallet.model.Network;
+
+import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -25,7 +36,7 @@ import butterknife.OnClick;
 /**
  * 导入EOS钱包页
  */
-public class ImportEOSWalletActivity extends BaseActivity {
+public class ImportEOSWalletActivity extends BaseActivity implements KeystoreStorage {
 
     @BindView(R.id.title_tv)
     TextView titleTv;
@@ -67,7 +78,8 @@ public class ImportEOSWalletActivity extends BaseActivity {
 
     @Override
     public void initData() {
-
+        WalletManager.storage = this;
+        WalletManager.scanWallets();
     }
 
     @OnClick({R.id.back_iv, R.id.create_btn, R.id.password_et})
@@ -88,18 +100,50 @@ public class ImportEOSWalletActivity extends BaseActivity {
                     ToastUtils.showToast(R.string.please_enter_password);
                     return;
                 }
-                importWallet(privateKey, password);
+                showProgress();
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+                            importWallet(privateKey, password);
+                        }catch (Exception e){
+                            ToastUtils.showToast(R.string.import_wallet_error);
+                        }
+                    }
+                }).start();
                 break;
         }
     }
 
     public void importWallet(String privateKey, String password) {
-        Metadata metadata = new Metadata();
-        metadata.setChainType(ChainType.EOS);
-        metadata.setNetwork(Network.MAINNET);
-        Wallet eosWallet = WalletManager.importWalletFromPrivateKey(metadata, privateKey, password, true);
-        String publicKey = eosWallet.exportPrivateKeys(password).get(0).getPublicKey();
+//        Metadata metadata = new Metadata();
+//        metadata.setChainType(ChainType.EOS);
+//        metadata.setNetwork(Network.MAINNET);
+        Identity identity = Identity.createIdentity("user", password, passwordHint, Network.MAINNET, Metadata.FROM_NEW_IDENTITY);
+        List<String> chainTypeList = new ArrayList<>();
+        chainTypeList.add(ChainType.EOS);
+        Wallet eosWallet = identity.deriveWallets(chainTypeList, password).get(0);
+//        List<String> prvKeys = new ArrayList<>();
+//        prvKeys.add(privateKey);
+//        List<EOSKeystore.PermissionObject> permissionObjects = new ArrayList<>();
+//        eosWallet = WalletManager.importWalletFromPrivateKeys(metadata, "account", prvKeys, permissionObjects, password, true);
+//        String publicKey = eosWallet.getKeyPathPrivates().get(0).getPublicKey();
 
+        Wallet wallet = WalletManager.importWalletFromPrivateKey(new Metadata(ChainType.EOS, Network.MAINNET, "name", passwordHint),"", privateKey, password, true);
+        String publicKey = wallet.exportPrivateKeys(password).get(0).getPublicKey();
+
+        UserInfo.setPrivateKey(privateKey);
+        UserInfo.setOwnerKey(publicKey);
+        UserInfo.setActiverKey(publicKey);
+        UserInfo.setPassword(password);
+        UserInfo.setPasswordHit(passwordHint);
+        UserInfo.setId(wallet.getId());
+        ShowDialog.dissmiss();
+        MainActivity.readGoMain(ImportEOSWalletActivity.this);
     }
 
+    @Override
+    public File getKeystoreDir() {
+        return this.getFilesDir();
+    }
 }
