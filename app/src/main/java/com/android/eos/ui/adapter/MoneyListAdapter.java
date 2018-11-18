@@ -4,10 +4,8 @@ import android.support.annotation.Nullable;
 import android.widget.ImageView;
 
 import com.android.eos.R;
-import com.android.eos.bean.CurrencyListResponse;
 import com.android.eos.bean.MixCurrencyListBean;
 import com.android.eos.net.GlideApp;
-import com.bumptech.glide.Glide;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 
@@ -30,7 +28,7 @@ public class MoneyListAdapter extends BaseQuickAdapter<MixCurrencyListBean, Base
             helper.setText(R.id.address_tv, item.getEosBean().getAddress());
         }
         if (null != item.getPriceBean()) {
-            helper.setText(R.id.price_tv, item.getPriceBean().getPrice() + "");
+            helper.setText(R.id.price_tv, "≈ ￥" + item.getPriceBean().getPrice());
         }
         helper.setText(R.id.count_tv, item.getCount());
 

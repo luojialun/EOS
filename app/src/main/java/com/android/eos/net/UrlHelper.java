@@ -24,7 +24,7 @@ public class UrlHelper {
     //查询代币余额  post
     public final static String getCurrencyBalance = nodeUrl + "v1/chain/get_currency_balance";
     //查询交易信息  psot
-    public final static String getDealMsgList = apiUrl + "v1/history/get_actions";
+    public final static String getDealMsgList = nodeUrl + "v1/history/get_actions";
     //更新日志 get
     public final static String upLog = apiUrl + "up_log.html";
     //版本检测 get

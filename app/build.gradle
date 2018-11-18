@@ -11,6 +11,9 @@ android {
         versionName "1.0.0"
         multiDexEnabled true
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        packagingOptions {
+            exclude 'META-INF/proguard/androidx-annotations.pro'
+        }
     }
     buildTypes {
         debug {
@@ -80,4 +83,6 @@ dependencies {
     compile 'com.mylhyl:zxingscanner:2.1.2'
     //权限
     implementation 'com.yanzhenjie:permission:2.0.0-rc12'
+    //图表
+    implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0-alpha'
 }
