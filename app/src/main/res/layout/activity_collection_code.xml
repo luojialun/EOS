@@ -70,6 +70,7 @@
 
             <!--code-->
             <TextView
+                android:id="@+id/address_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
@@ -88,12 +89,16 @@
                 android:layout_marginTop="12dp"
                 android:background="@drawable/rectangle_bottom10_gray">
 
+                <ImageView
+                    android:id="@+id/code_iv"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
 
             </RelativeLayout>
 
             <!--copy collextion code-->
             <FrameLayout
-                android:id="@+id/next_fl"
+                android:id="@+id/copy_fl"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
                 android:layout_marginTop="24dp"
@@ -131,7 +136,7 @@
             android:layout_height="80dp"
             android:layout_centerHorizontal="true"
             android:scaleType="centerCrop"
-            android:src="@mipmap/banner_example"
+            android:src="@mipmap/default_avatar"
             app:riv_border_color="@color/white"
             app:riv_border_width="5dp"
             app:riv_oval="true" />

@@ -9,8 +9,17 @@ import android.widget.TextView;
 
 import com.android.eos.R;
 import com.android.eos.base.BaseFragment;
+import com.android.eos.bean.FindResponse;
+import com.android.eos.data.TempData;
+import com.android.eos.event.FindDataEvent;
+import com.android.eos.net.HttpUtils;
+import com.android.eos.net.UrlHelper;
+import com.android.eos.net.callbck.JsonCallback;
 import com.android.eos.ui.adapter.MainPagerAdapter;
 import com.flyco.tablayout.SlidingTabLayout;
+import com.lzy.okgo.model.Response;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -59,7 +68,30 @@ public class DiscoveryFragment extends BaseFragment {
 
     @Override
     public void initData() {
-
+        getDiscoveryData();
     }
+
+    private void getDiscoveryData() {
+        HttpUtils.getRequets(UrlHelper.find, getActivity(), new JsonCallback<String>() {
+            @Override
+            public void onSuccess(Response<String> response) {
+                super.onSuccess(response);
+                FindResponse findResponse = (FindResponse) parseStringToBean(response.body().toString(), FindResponse.class);
+                if (null != findResponse) {
+                    TempData.setFindResponse(findResponse);
+                    EventBus.getDefault().post(new FindDataEvent(true));
+                } else {
+                    EventBus.getDefault().post(new FindDataEvent(false));
+                }
+            }
+
+            @Override
+            public void onError(Response<String> response) {
+                super.onError(response);
+                EventBus.getDefault().post(new FindDataEvent(false));
+            }
+        });
+    }
+
 
 }

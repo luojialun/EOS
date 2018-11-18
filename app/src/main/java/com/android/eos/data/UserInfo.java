@@ -26,6 +26,76 @@ public class UserInfo {
 
     public final static String PRIVATE_KEY = "privateKey";
 
+    public final static String NAME = "name";
+
+    public final static String PASS = "pass";
+
+    public final static String PASS_HINT = "pass_hint";
+
+    public final static String IDCARD = "idcard";
+
+    public final static String IDNAME = "idname";
+
+    public final static String TOKEN = "token";
+
+    public final static String EMAIL = "email";
+
+    public static void setPassHint(String passHint) {
+        SPUtils.getInstance().put(PASS_HINT, passHint);
+    }
+
+    public static String getPassHint() {
+        return SPUtils.getInstance().getString(PASS_HINT);
+    }
+
+    public static void setEmail(String email) {
+        SPUtils.getInstance().put(EMAIL, email);
+    }
+
+    public static String getEmail() {
+        return SPUtils.getInstance().getString(EMAIL);
+    }
+
+    public static void setToken(String token) {
+        SPUtils.getInstance().put(TOKEN, token);
+    }
+
+    public static String getToken() {
+        return SPUtils.getInstance().getString(TOKEN);
+    }
+
+    public static void setIdname(String idname) {
+        SPUtils.getInstance().put(IDNAME, idname);
+    }
+
+    public static String getIdname() {
+        return SPUtils.getInstance().getString(IDNAME);
+    }
+
+    public static void setIdcard(String idcard) {
+        SPUtils.getInstance().put(IDCARD, idcard);
+    }
+
+    public static String getIdcard() {
+        return SPUtils.getInstance().getString(IDCARD);
+    }
+
+    public static void setPass(String pass) {
+        SPUtils.getInstance().put(PASS, pass);
+    }
+
+    public static String getPass() {
+        return SPUtils.getInstance().getString(PASS);
+    }
+
+    public static void setName(String name) {
+        SPUtils.getInstance().put(NAME, name);
+    }
+
+    public static String getName() {
+        return SPUtils.getInstance().getString(NAME);
+    }
+
     public static void setPrivateKey(String privateKey) {
         SPUtils.getInstance().put(PRIVATE_KEY, privateKey);
     }

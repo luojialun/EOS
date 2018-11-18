@@ -165,5 +165,16 @@
     <string name="create_error">\"未能成功创建，请重试~\"</string>
     <string name="please_enter_private_key">请输入明文私钥</string>
     <string name="import_wallet_error">导入钱包失败</string>
+    <string name="scan">扫一扫</string>
+    <string name="please_open_camera_permission">请开启相机权限</string>
+    <string name="copy_success">复制成功</string>
+    <string name="the_newest_version">已经是最新版本</string>
+    <string name="please_enter_search">请输入搜索内容</string>
+    <string name="please_enter_identity">请输入身份名字</string>
+    <string name="identity_fail">身份注册失败</string>
+    <string name="backup_fail">备份失败</string>
+    <string name="backup_success">备份成功</string>
+    <string name="please_enter_right_acount">请输入正确的账户名</string>
+    <string name="account_hint">12位字符，首字母必须是字母</string>
 
 </resources>

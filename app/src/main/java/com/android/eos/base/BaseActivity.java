@@ -46,6 +46,7 @@ public abstract class BaseActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+
     public void readyGoThenKill(Class<?> clazz) {
         Intent intent = new Intent(this, clazz);
         startActivity(intent);
@@ -69,12 +70,16 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     public abstract void initData();
 
-    public void bindEventBus(boolean eventBusState) {
-        this.eventBusState = eventBusState;
+    public boolean bindEventBus() {
+        return eventBusState;
     }
 
     public void showProgress() {
         ShowDialog.showDialog(this, "", true, null);
+    }
+
+    public void dismissProgress() {
+        ShowDialog.dissmiss();
     }
 
     /**

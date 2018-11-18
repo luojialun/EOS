@@ -8,20 +8,19 @@ android {
         minSdkVersion 19
         targetSdkVersion 28
         versionCode 1
-        versionName "1.0"
+        versionName "1.0.0"
+        multiDexEnabled true
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
         debug {
             minifyEnabled false
-            multiDexEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             buildConfigField "boolean", "LOG_DEBUG", "true"
         }
 
         release {
-            minifyEnabled true
-            multiDexEnabled true
+            minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             buildConfigField "boolean", "LOG_DEBUG", "false"
         }
@@ -77,4 +76,8 @@ dependencies {
     compile 'com.bigkoo:convenientbanner:2.0.5'
     //greendao
     implementation 'org.greenrobot:greendao:3.2.0'
+    //扫一扫
+    compile 'com.mylhyl:zxingscanner:2.1.2'
+    //权限
+    implementation 'com.yanzhenjie:permission:2.0.0-rc12'
 }

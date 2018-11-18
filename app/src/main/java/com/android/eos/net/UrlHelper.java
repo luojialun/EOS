@@ -23,7 +23,24 @@ public class UrlHelper {
     public final static String getKeyAccounts = nodeUrl + "v1/history/get_key_accounts";
     //查询代币余额  post
     public final static String getCurrencyBalance = nodeUrl + "v1/chain/get_currency_balance";
-
+    //查询交易信息  psot
+    public final static String getDealMsgList = apiUrl + "v1/history/get_actions";
+    //更新日志 get
+    public final static String upLog = apiUrl + "up_log.html";
+    //版本检测 get
+    public static final String version = apiUrl + "version.json";
+    //帮助与反馈数据 get
+    public static final String help_feedback = apiUrl + "help/problem.json";
+    //帮助与反馈搜索 get
+    public static final String help_search = apiUrl + "help/search.html?w=";
+    //发现页数据  get
+    public static final String find = apiUrl + "find.json";
+    //创建身份 get
+    public static final String register = apiUrl + "v1/register";
+    //登录身份  get
+    public static final String login = apiUrl + "v1/login";
+    //更新数据  get
+    public static final String update_identity = apiUrl + "v1/update";
 
 
 }

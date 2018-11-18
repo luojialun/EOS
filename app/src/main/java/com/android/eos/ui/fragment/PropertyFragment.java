@@ -1,10 +1,10 @@
 package com.android.eos.ui.fragment;
 
 
+import android.content.Intent;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
@@ -22,14 +22,20 @@ import com.android.eos.ui.activity.CollectionCodeActivity;
 import com.android.eos.ui.activity.ExchangeActivity;
 import com.android.eos.ui.activity.MyWalletActivity;
 import com.android.eos.ui.activity.PropertyAddActivity;
+import com.android.eos.ui.activity.ScanCodeActivity;
 import com.android.eos.ui.activity.TransAndCollectionActivity;
 import com.android.eos.ui.activity.WalletMessageActivity;
 import com.android.eos.ui.adapter.MoneyListAdapter;
+import com.android.eos.utils.ConstantUtils;
 import com.android.eos.utils.LogUtils;
+import com.android.eos.utils.ToastUtils;
 import com.android.eos.widget.dialog.ShowDialog;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.google.gson.Gson;
 import com.lzy.okgo.model.Response;
+import com.yanzhenjie.permission.Action;
+import com.yanzhenjie.permission.AndPermission;
+import com.yanzhenjie.permission.Permission;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -55,6 +61,7 @@ public class PropertyFragment extends BaseFragment implements BaseQuickAdapter.O
     private MoneyListAdapter adapter;
     private List<MixCurrencyListBean> mixCurrencyListBeanList = new ArrayList<>();  //货币列表数据组装类
     private int getBalanceTimes = 0;//getBalance方法请求次数
+    private boolean getPriceOk = false; //获取价格请求成功
 
     @Override
     public int setViewId() {
@@ -114,33 +121,45 @@ public class PropertyFragment extends BaseFragment implements BaseQuickAdapter.O
         });
     }
 
+    /**
+     * 货币列表
+     */
     private void getCurrencyList() {
         HttpUtils.getRequets(UrlHelper.getCurrencyList, getActivity(), null, new JsonCallback<String>() {
             @Override
             public void onSuccess(Response<String> response) {
                 super.onSuccess(response);
                 CurrencyListResponse currencyListResponse = (CurrencyListResponse) parseStringToBean(response.body().toString(), CurrencyListResponse.class);
-                StringBuffer symbol = new StringBuffer();
-                for (CurrencyListResponse.EOSBean eosBean : currencyListResponse.getEos()) {
-                    symbol.append(eosBean.getName() + ",");
-                    getCurrencyBalance(eosBean.getAddress(), UserInfo.getAccount());
-                    MixCurrencyListBean mixCurrencyListBean = new MixCurrencyListBean();
-                    mixCurrencyListBean.setEosBean(eosBean);
-                    mixCurrencyListBeanList.add(mixCurrencyListBean);
+                if (null != currencyListResponse) {
+                    StringBuffer symbol = new StringBuffer();
+                    for (CurrencyListResponse.EOSBean eosBean : currencyListResponse.getEos()) {
+                        symbol.append(eosBean.getName() + ",");
+                        getCurrencyBalance(eosBean.getAddress(), UserInfo.getAccount());
+                        MixCurrencyListBean mixCurrencyListBean = new MixCurrencyListBean();
+                        mixCurrencyListBean.setEosBean(eosBean);
+                        mixCurrencyListBeanList.add(mixCurrencyListBean);
+                    }
+                    symbol.deleteCharAt(symbol.length() - 1);
+                    getPrice(symbol.toString());
+                } else {
+                    adapter.setEmptyView(R.layout.layout_empty);
                 }
-                symbol.deleteCharAt(symbol.length() - 1);
-                getPrice(symbol.toString());
 
             }
 
             @Override
             public void onError(Response<String> response) {
                 super.onError(response);
-
+                adapter.setEmptyView(R.layout.layout_empty);
             }
         });
     }
 
+    /**
+     * 获取价格
+     *
+     * @param symbol
+     */
     private void getPrice(String symbol) {
         Map<String, String> paramsMap = new HashMap<>();
         paramsMap.put("symbol", symbol);
@@ -148,29 +167,42 @@ public class PropertyFragment extends BaseFragment implements BaseQuickAdapter.O
             @Override
             public void onSuccess(Response<String> response) {
                 super.onSuccess(response);
-                LogUtils.loge("price-->" + response.body().toString());
                 PriceResponse priceResponse = (PriceResponse) parseStringToBean(response.body().toString(), PriceResponse.class);
-                for (PriceResponse.PriceBean priceBean : priceResponse.getData()) {
-                    walletSum += priceBean.getPrice();
-                    walletSumTv.setText(String.valueOf(walletSum));
-                    for (MixCurrencyListBean mixCurrencyListBean : mixCurrencyListBeanList) {
-                        if (mixCurrencyListBean.getEosBean().getAddress().equals(priceBean.getSymbol())) {
-                            mixCurrencyListBean.setPriceBean(priceBean);
-                            continue;
+                if (null != priceResponse) {
+                    for (PriceResponse.PriceBean priceBean : priceResponse.getData()) {
+                        walletSum += priceBean.getPrice();
+                        walletSumTv.setText(String.valueOf(walletSum));
+                        for (MixCurrencyListBean mixCurrencyListBean : mixCurrencyListBeanList) {
+                            if (mixCurrencyListBean.getEosBean().getName().equals(priceBean.getSymbol())) {
+                                mixCurrencyListBean.setPriceBean(priceBean);
+                                continue;
+                            }
                         }
                     }
+                    getPriceOk = true;
+                    if (getBalanceTimes == mixCurrencyListBeanList.size()) {
+                        ShowDialog.dissmiss();
+                        adapter.setNewData(mixCurrencyListBeanList);
+                    }
+                } else {
+                    adapter.setEmptyView(R.layout.layout_empty);
                 }
-
             }
 
             @Override
             public void onError(Response<String> response) {
                 super.onError(response);
-
+                adapter.setEmptyView(R.layout.layout_empty);
             }
         });
     }
 
+    /**
+     * 获取数量count
+     *
+     * @param code
+     * @param account
+     */
     public void getCurrencyBalance(String code, String account) {
         Map<String, String> paramsMap = new HashMap<>();
         paramsMap.put("code", code);
@@ -180,17 +212,27 @@ public class PropertyFragment extends BaseFragment implements BaseQuickAdapter.O
             @Override
             public void onSuccess(Response<String> response) {
                 super.onSuccess(response);
-                for (MixCurrencyListBean mixCurrencyListBean : mixCurrencyListBeanList) {
-                    if (mixCurrencyListBean.getEosBean().getAddress().equals(code)) {
-                        mixCurrencyListBean.setCount(response.body().toString());
-                        break;
+                if (!TextUtils.isEmpty(response.body().toString())) {
+                    for (MixCurrencyListBean mixCurrencyListBean : mixCurrencyListBeanList) {
+                        if (mixCurrencyListBean.getEosBean().getAddress().equals(code)) {
+                            mixCurrencyListBean.setCount(response.body().toString());
+                            break;
+                        }
                     }
+                    getBalanceTimes++;
+                    if (getBalanceTimes == mixCurrencyListBeanList.size() && getPriceOk) {
+                        ShowDialog.dissmiss();
+                        adapter.setNewData(mixCurrencyListBeanList);
+                    }
+                } else {
+                    adapter.setEmptyView(R.layout.layout_empty);
                 }
-                getBalanceTimes++;
-                if (getBalanceTimes == mixCurrencyListBeanList.size()) {
-                    ShowDialog.dissmiss();
-                    adapter.setNewData(mixCurrencyListBeanList);
-                }
+            }
+
+            @Override
+            public void onError(Response<String> response) {
+                super.onError(response);
+                adapter.setEmptyView(R.layout.layout_empty);
             }
         });
     }
@@ -199,6 +241,19 @@ public class PropertyFragment extends BaseFragment implements BaseQuickAdapter.O
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.scan_iv:
+                AndPermission.with(getActivity())
+                        .permission(Permission.CAMERA)
+                        .onGranted(new Action<List<String>>() {
+                            @Override
+                            public void onAction(List<String> data) {
+                                readyGo(ScanCodeActivity.class);
+                            }
+                        }).onDenied(new Action<List<String>>() {
+                    @Override
+                    public void onAction(List<String> data) {
+                        ToastUtils.showToast(R.string.please_open_camera_permission);
+                    }
+                }).start();
                 break;
             case R.id.right_iv:
                 readyGo(MyWalletActivity.class);
@@ -210,7 +265,7 @@ public class PropertyFragment extends BaseFragment implements BaseQuickAdapter.O
                 readyGo(ExchangeActivity.class);
                 break;
             case R.id.collection_code_ll:
-                readyGo(CollectionCodeActivity.class);
+                startActivity(new Intent(getActivity(), CollectionCodeActivity.class).putExtra(ConstantUtils.ACCOUNT, UserInfo.getAccount()));
                 break;
             case R.id.property_add_iv:
                 readyGo(PropertyAddActivity.class);
@@ -232,7 +287,9 @@ public class PropertyFragment extends BaseFragment implements BaseQuickAdapter.O
                 readyGo(TransAndCollectionActivity.class);
                 break;
             case R.id.collection_code_iv:
-                readyGo(CollectionCodeActivity.class);
+                Intent intent = new Intent(getActivity(), CollectionCodeActivity.class);
+                intent.putExtra(ConstantUtils.ACCOUNT, ((MixCurrencyListBean) adapter.getData().get(position)).getEosBean().getAddress());
+                startActivity(intent);
                 break;
         }
     }

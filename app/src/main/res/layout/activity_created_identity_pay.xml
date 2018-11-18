@@ -32,6 +32,7 @@
                 android:textStyle="bold" />
 
             <EditText
+                android:id="@+id/account_et"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="23dp"
@@ -59,6 +60,7 @@
                 android:textStyle="bold" />
 
             <EditText
+                android:id="@+id/ownerkey_et"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="23dp"
@@ -86,6 +88,7 @@
                 android:textStyle="bold" />
 
             <EditText
+                android:id="@+id/activerkey_et"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="23dp"
@@ -134,10 +137,11 @@
             <!--创建-->
             <Button
                 android:id="@+id/create_btn"
-                android:layout_width="match_parent"
+                android:layout_width="335dp"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
                 android:layout_marginTop="25dp"
-                android:background="@mipmap/rectangle_green_bg"
+                android:background="@mipmap/rectangle_green_bg2"
                 android:paddingBottom="5dp"
                 android:paddingHorizontal="14dp"
                 android:text="@string/create"

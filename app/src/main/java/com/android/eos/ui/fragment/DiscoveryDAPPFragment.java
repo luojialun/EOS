@@ -8,11 +8,19 @@ import android.support.v7.widget.RecyclerView;
 
 import com.android.eos.R;
 import com.android.eos.base.BaseFragment;
+import com.android.eos.bean.FindResponse;
+import com.android.eos.data.TempData;
+import com.android.eos.event.FindDataEvent;
 import com.android.eos.ui.adapter.BaseFragmentPagerAdapter;
 import com.android.eos.ui.adapter.HotAdapter;
 import com.android.eos.ui.adapter.LatestGameAdapter;
+import com.android.eos.ui.adapter.RecommandAdapter;
+import com.android.eos.ui.adapter.RecommandIDAdapter;
 import com.android.eos.widget.MyRecyclerView;
 import com.android.eos.widget.TransformViewPager;
+
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,43 +46,59 @@ public class DiscoveryDAPPFragment extends BaseFragment {
 
     @Override
     public void initView() {
-        initBannerAdapter();
-        initLatestGameAdapter();
-        initHotAdapter();
     }
 
     private void initBannerAdapter() {
-        List<Fragment> fragmentList = new ArrayList<>();
-        fragmentList.add(new BannerFragment());
-        fragmentList.add(new BannerFragment());
-        fragmentList.add(new BannerFragment());
-        fragmentList.add(new BannerFragment());
-        fragmentList.add(new BannerFragment());
-        bannerVp.setAdapter(new BaseFragmentPagerAdapter(getChildFragmentManager(), fragmentList));
-        bannerVp.setOffscreenPageLimit(fragmentList.size());
+        if (null != TempData.getFindResponse()) {
+            List<Fragment> fragmentList = new ArrayList<>();
+            for (FindResponse.BannerBean bean : TempData.getFindResponse().getDapp().getBanner()) {
+                fragmentList.add(BannerFragment.newInstance(bean.getIcon(), bean.getUrl()));
+            }
+            bannerVp.setAdapter(new BaseFragmentPagerAdapter(getChildFragmentManager(), fragmentList));
+            bannerVp.setOffscreenPageLimit(fragmentList.size());
+        }
     }
 
     private void initLatestGameAdapter() {
-        List<String> dataList = new ArrayList<>();
-        dataList.add("1");
-        dataList.add("1");
-        latestGameRv.setLayoutManager(new LinearLayoutManager(getActivity()));
-        latestGameRv.setAdapter(new LatestGameAdapter(dataList));
+        if (null != TempData.getFindResponse()) {
+            List<FindResponse.WeekBean> dataList = new ArrayList<>();
+            for (FindResponse.WeekBean bean : TempData.getFindResponse().getDapp().getWeek()) {
+                dataList.add(bean);
+            }
+            latestGameRv.setLayoutManager(new LinearLayoutManager(getActivity()));
+            latestGameRv.setAdapter(new LatestGameAdapter(dataList));
+        }
 
     }
 
     private void initHotAdapter() {
-        List<String> dataList = new ArrayList<>();
-        for (int i = 0; i < 8; i++) {
-            dataList.add("1");
+        if (null != TempData.getFindResponse() && null != TempData.getFindResponse().getDapp()) {
+            List<FindResponse.RecommendBean> dataList = new ArrayList<>();
+            for (FindResponse.RecommendBean bean : TempData.getFindResponse().getDapp().getRecommend()) {
+                dataList.add(bean);
+            }
+            hotRv.setLayoutManager(new GridLayoutManager(getActivity(), 4));
+            hotRv.setAdapter(new HotAdapter(dataList));
         }
-        hotRv.setLayoutManager(new GridLayoutManager(getActivity(), 4));
-        hotRv.setAdapter(new HotAdapter(dataList));
     }
 
     @Override
     public void initData() {
 
+    }
+
+    @Override
+    public boolean bindEventBus() {
+        return true;
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void findData(FindDataEvent event) {
+        if (event.isStatus()) {
+            initBannerAdapter();
+            initLatestGameAdapter();
+            initHotAdapter();
+        }
     }
 
 }

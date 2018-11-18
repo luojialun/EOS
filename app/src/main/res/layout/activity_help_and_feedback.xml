@@ -60,14 +60,18 @@
             android:src="@mipmap/search_gray" />
 
         <EditText
+            android:id="@+id/search_et"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:layout_marginLeft="10dp"
             android:background="@null"
             android:hint="我们能帮助您什么？"
+            android:imeOptions="actionSearch"
+            android:maxLength="1"
             android:textColorHint="#8893AA"
             android:textSize="11sp" />
+
     </LinearLayout>
 
     <ScrollView
@@ -114,109 +118,10 @@
                 android:elevation="8dp"
                 android:orientation="vertical">
 
-                <LinearLayout
+                <com.android.eos.widget.MyRecyclerView
+                    android:id="@+id/common_rv"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:padding="15dp">
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="如何修改钱包密码?"
-                        android:textColor="@color/color_333333"
-                        android:textSize="14sp" />
-
-                    <ImageView
-                        android:layout_width="12dp"
-                        android:layout_height="14dp"
-                        android:layout_gravity="center_vertical"
-                        android:src="@mipmap/back_gray" />
-
-                </LinearLayout>
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1px"
-                    android:background="#EAECF3" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:padding="15dp">
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="转账未打包怎么办?"
-                        android:textColor="@color/color_333333"
-                        android:textSize="14sp" />
-
-                    <ImageView
-                        android:layout_width="12dp"
-                        android:layout_height="14dp"
-                        android:layout_gravity="center_vertical"
-                        android:src="@mipmap/back_gray" />
-
-                </LinearLayout>
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1px"
-                    android:background="#EAECF3" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:padding="15dp">
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="转账超时是怎么回事?"
-                        android:textColor="@color/color_333333"
-                        android:textSize="14sp" />
-
-                    <ImageView
-                        android:layout_width="12dp"
-                        android:layout_height="14dp"
-                        android:layout_gravity="center_vertical"
-                        android:src="@mipmap/back_gray" />
-
-                </LinearLayout>
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1px"
-                    android:background="#EAECF3" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:padding="15dp">
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="交易所提币长时间未到账"
-                        android:textColor="@color/color_333333"
-                        android:textSize="14sp" />
-
-                    <ImageView
-                        android:layout_width="12dp"
-                        android:layout_height="14dp"
-                        android:layout_gravity="center_vertical"
-                        android:src="@mipmap/back_gray" />
-
-                </LinearLayout>
-
+                    android:layout_height="wrap_content" />
 
             </LinearLayout>
 
@@ -252,121 +157,10 @@
                 android:elevation="8dp"
                 android:orientation="vertical">
 
-                <LinearLayout
+                <com.android.eos.widget.MyRecyclerView
+                    android:id="@+id/type_rv"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:padding="15dp">
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="基本操作"
-                            android:textColor="@color/color_333333"
-                            android:textSize="14sp" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="身份/钱包/交易 "
-                            android:textSize="11sp" />
-
-                    </LinearLayout>
-
-                    <ImageView
-                        android:layout_width="12dp"
-                        android:layout_height="14dp"
-                        android:layout_gravity="center_vertical"
-                        android:src="@mipmap/back_gray" />
-
-                </LinearLayout>
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1px"
-                    android:background="#EAECF3" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:padding="15dp">
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="助记词、私钥和Keystore"
-                            android:textColor="@color/color_333333"
-                            android:textSize="14sp" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="导入/导出/备份"
-                            android:textSize="11sp" />
-
-                    </LinearLayout>
-
-                    <ImageView
-                        android:layout_width="12dp"
-                        android:layout_height="14dp"
-                        android:layout_gravity="center_vertical"
-                        android:src="@mipmap/back_gray" />
-
-                </LinearLayout>
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1px"
-                    android:background="#EAECF3" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:padding="15dp">
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="转账收款"
-                            android:textColor="@color/color_333333"
-                            android:textSize="14sp" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="未打包/未到账/失败"
-                            android:textSize="11sp" />
-
-                    </LinearLayout>
-
-                    <ImageView
-                        android:layout_width="12dp"
-                        android:layout_height="14dp"
-                        android:layout_gravity="center_vertical"
-                        android:src="@mipmap/back_gray" />
-
-                </LinearLayout>
-
+                    android:layout_height="wrap_content" />
 
             </LinearLayout>
 

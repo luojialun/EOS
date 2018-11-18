@@ -3,6 +3,7 @@
     package="com.android.eos">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.CAMERA" />
 
     <application
         android:name=".base.BaseApp"
@@ -20,10 +21,21 @@
             </intent-filter>
         </activity>
 
+
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="com.android.eos.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
+
+
         <activity
             android:name=".ui.activity.WelcomeActivity"
             android:screenOrientation="portrait" />
-
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTask"
@@ -88,17 +100,47 @@
         <activity
             android:name=".ui.activity.EnterPasswordActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".ui.activity.GameActivity" />
-        <activity android:name=".ui.activity.CreateIdentityActivity" />
-        <activity android:name=".ui.activity.MyIdentityActivity" />
-        <activity android:name=".ui.activity.UseSettingActivity" />
-        <activity android:name=".ui.activity.NodeSettingActivity" />
-        <activity android:name=".ui.activity.NodeSettingDetailsActivity" />
-        <activity android:name=".ui.activity.HelpAndFeedbackActivity" />
-        <activity android:name=".ui.activity.UserAgreementActivity" />
-        <activity android:name=".ui.activity.AboutUsActivity" />
-        <activity android:name=".ui.activity.MyRecommandActivity" />
-        <activity android:name=".ui.activity.SetSecretActivity" />
+        <activity
+            android:name=".ui.activity.GameActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.activity.CreateIdentityActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".ui.activity.MyIdentityActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.activity.UseSettingActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.activity.NodeSettingActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.activity.NodeSettingDetailsActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.activity.HelpAndFeedbackActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".ui.activity.UserAgreementActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.activity.AboutUsActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.activity.MyRecommandActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.activity.SetSecretActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.activity.ScanCodeActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.activity.H5Activity"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

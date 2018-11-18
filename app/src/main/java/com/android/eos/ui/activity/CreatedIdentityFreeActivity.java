@@ -1,6 +1,5 @@
 package com.android.eos.ui.activity;
 
-import android.content.Intent;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
@@ -34,6 +33,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Handler;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -90,7 +90,17 @@ public class CreatedIdentityFreeActivity extends BaseActivity implements Keystor
         new Thread(new Runnable() {
             @Override
             public void run() {
-                createWallet(password, passwordHint);
+                try {
+                    createWallet(password, passwordHint);
+                } catch (Exception e) {
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            ToastUtils.showToast(R.string.create_error);
+                        }
+                    });
+                    e.printStackTrace();
+                }
             }
         }).start();
     }
@@ -116,19 +126,27 @@ public class CreatedIdentityFreeActivity extends BaseActivity implements Keystor
                 }
                 if (RegexUtil.isEosName(accountEt.getText().toString())) {
                     createEOS();
+                }else{
+                    ToastUtils.showToast(R.string.please_enter_right_acount);
                 }
                 break;
         }
     }
 
-    private void createWallet(String password, String passwordHint) {
+    /**
+     * 创建钱包
+     *
+     * @param password
+     * @param passwordHint
+     */
+    private void createWallet(String password, String passwordHint) throws Exception {
         Identity identity = Identity.createIdentity("user", password, passwordHint, Network.MAINNET, Metadata.FROM_NEW_IDENTITY);
         List<String> chainTypeList = new ArrayList<>();
         chainTypeList.add(ChainType.EOS);
         eosWallet = identity.deriveWallets(chainTypeList, password).get(0);
         ownerKey = eosWallet.exportPrivateKeys(password).get(0).getPublicKey();
         activerKey = eosWallet.exportPrivateKeys(password).get(0).getPublicKey();
-        privateKey = eosWallet.exportPrivateKey(password);
+        privateKey = eosWallet.exportPrivateKeys(password).get(0).getPrivateKey();
         LogUtils.loge("owner key-->" + ownerKey);
         LogUtils.loge("acitver key-->" + activerKey);
         runOnUiThread(new Runnable() {
@@ -142,6 +160,9 @@ public class CreatedIdentityFreeActivity extends BaseActivity implements Keystor
 
     }
 
+    /**
+     * 创建EOS账号
+     */
     private void createEOS() {
         showProgress();
         Map<String, String> paramsMap = new HashMap<>();
@@ -152,6 +173,7 @@ public class CreatedIdentityFreeActivity extends BaseActivity implements Keystor
             @Override
             public void onSuccess(Response<String> response) {
                 super.onSuccess(response);
+                dismissProgress();
                 CreateEOSResponse createEOSResponse = (CreateEOSResponse) parseStringToBean(response.body().toString(), CreateEOSResponse.class);
                 if (createEOSResponse.isRet()) {
                     UserInfo.setTid(createEOSResponse.getTid());
@@ -167,6 +189,12 @@ public class CreatedIdentityFreeActivity extends BaseActivity implements Keystor
                 } else {
                     ToastUtils.showToast(getResources().getString(R.string.create_error));
                 }
+            }
+
+            @Override
+            public void onError(Response<String> response) {
+                super.onError(response);
+                ToastUtils.showToast(getResources().getString(R.string.create_error));
             }
         });
 

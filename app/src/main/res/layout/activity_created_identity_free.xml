@@ -69,6 +69,7 @@
                 android:layout_marginHorizontal="23dp"
                 android:layout_marginTop="12dp"
                 android:background="@null"
+                android:hint="@string/account_hint"
                 android:paddingBottom="6dp"
                 android:textColor="#333333"
                 android:textSize="16sp" />

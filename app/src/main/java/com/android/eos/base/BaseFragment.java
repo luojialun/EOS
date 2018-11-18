@@ -30,7 +30,7 @@ public abstract class BaseFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View contentView = inflater.inflate(setViewId(), null);
-        if (eventBusState) {
+        if (bindEventBus()) {
             EventBus.getDefault().register(this);
         }
         unBinder = ButterKnife.bind(this, contentView);
@@ -51,8 +51,8 @@ public abstract class BaseFragment extends Fragment {
 
     public abstract void initData();
 
-    public void bindEventBus(boolean eventBusState){
-        this.eventBusState=eventBusState;
+    public boolean bindEventBus() {
+        return eventBusState;
     }
 
     public void readyGo(Class<?> clazz) {
@@ -67,6 +67,10 @@ public abstract class BaseFragment extends Fragment {
 
     public void showProgress() {
         ShowDialog.showDialog(getActivity(), "", true, null);
+    }
+
+    public void dissmissProgress() {
+        ShowDialog.dissmiss();
     }
 
     /**

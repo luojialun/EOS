@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/item_rl"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:paddingLeft="13dp">
@@ -12,16 +13,17 @@
         android:src="@mipmap/logo_example" />
 
     <LinearLayout
-        android:layout_toLeftOf="@+id/get_tv"
         android:id="@+id/text_ll"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
         android:layout_marginLeft="13dp"
+        android:layout_toLeftOf="@+id/get_tv"
         android:layout_toRightOf="@+id/icon_iv"
         android:orientation="vertical">
 
         <TextView
+            android:id="@+id/name_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="疯狂动物园"
@@ -30,10 +32,10 @@
             android:textStyle="bold" />
 
         <TextView
+            android:id="@+id/desc_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-
             android:text="荣获2016 IndiePlus全国大奖的游戏"
             android:textColor="#A1A9B9" />
 
