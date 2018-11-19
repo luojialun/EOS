@@ -10,10 +10,12 @@ import android.widget.TextView;
 
 import com.android.eos.R;
 import com.android.eos.base.BaseFragment;
+import com.android.eos.bean.AccountResponse;
 import com.android.eos.bean.CurrencyListResponse;
 import com.android.eos.bean.KeyAccountResponse;
 import com.android.eos.bean.MixCurrencyListBean;
 import com.android.eos.bean.PriceResponse;
+import com.android.eos.data.TempData;
 import com.android.eos.data.UserInfo;
 import com.android.eos.net.HttpUtils;
 import com.android.eos.net.UrlHelper;
@@ -103,7 +105,7 @@ public class PropertyFragment extends BaseFragment implements BaseQuickAdapter.O
                 }
                 accountTv.setText(UserInfo.getAccount());
                 getCurrencyList();
-                // getAccount();
+                getAccount();
             }
         });
     }
@@ -116,7 +118,8 @@ public class PropertyFragment extends BaseFragment implements BaseQuickAdapter.O
             @Override
             public void onSuccess(Response<String> response) {
                 super.onSuccess(response);
-                LogUtils.loge("account msg-->" + response.body().toString());
+                AccountResponse accountResponse = (AccountResponse) parseStringToBean(response.body().toString(), AccountResponse.class);
+                TempData.setAccountResponse(accountResponse);
             }
         });
     }

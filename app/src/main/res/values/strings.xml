@@ -107,7 +107,7 @@
     <string name="mine_property">我的资产</string>
     <string name="collection">收款</string>
     <string name="transfer">转账</string>
-    <string name="transfer_1">ETH转账</string>
+    <string name="transfer_1">EOS转账</string>
     <string name="input_num">请输入数量</string>
     <string name="collection_address">收款地址</string>
     <string name="address">地址</string>
@@ -176,5 +176,7 @@
     <string name="backup_success">备份成功</string>
     <string name="please_enter_right_acount">请输入正确的账户名</string>
     <string name="account_hint">12位字符，首字母必须是字母</string>
+    <string name="please_enter_address">请输入地址</string>
+    <string name="over_balance">超出余额</string>
 
 </resources>

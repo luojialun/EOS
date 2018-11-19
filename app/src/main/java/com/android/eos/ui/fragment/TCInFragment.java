@@ -8,8 +8,8 @@ import com.android.eos.R;
 import com.android.eos.base.BaseFragment;
 import com.android.eos.bean.DealListMsgResponse;
 import com.android.eos.data.TempData;
+import com.android.eos.data.UserInfo;
 import com.android.eos.event.GetDealListEvent;
-import com.android.eos.ui.adapter.ExchangeAdapter;
 import com.android.eos.ui.adapter.TCAllAdapter;
 
 import org.greenrobot.eventbus.Subscribe;
@@ -21,9 +21,9 @@ import java.util.List;
 import butterknife.BindView;
 
 /**
- * 转账和收款-全部页面
+ * 转账和收款-转入页面
  */
-public class TCAllFragment extends BaseFragment {
+public class TCInFragment extends BaseFragment {
 
     @BindView(R.id.rv)
     RecyclerView rv;
@@ -47,11 +47,17 @@ public class TCAllFragment extends BaseFragment {
     }
 
     public void setData() {
-        if (0 == TempData.getActionsBeanList().size()) {
+        List<DealListMsgResponse.ActionsBean> dataList = new ArrayList<>();
+        for (DealListMsgResponse.ActionsBean actionsBean : TempData.getActionsBeanList()) {
+            if (actionsBean.getAction_trace().getAct().getData().getTo().equals(UserInfo.getAccount())) {
+                dataList.add(actionsBean);
+            }
+        }
+        if (0 == dataList.size()) {
             adapter.setNewData(null);
             adapter.setEmptyView(R.layout.layout_empty,rv);
         } else {
-            adapter.setNewData(TempData.getActionsBeanList());
+            adapter.setNewData(dataList);
         }
     }
 
